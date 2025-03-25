@@ -76,8 +76,9 @@ public class PlayerController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("MouseLayer")))
         {
+            print(hit.collider.gameObject.name);
             Vector3 lookDirection = hit.point - transform.position;
             lookDirection.y = 0; // No rotar en el eje Y
             Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
