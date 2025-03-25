@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootForce = 1000f;
     [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private float rotationSpeed = 10f;
-
+    private bool canMove = true;   // Deteccioón para el dash
     public Transform SpawnBullet;
     public GameObject Bullet;
 
@@ -55,7 +55,10 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        if(canMove)
+        {
+            rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     public void RotatePlayer()
@@ -92,4 +95,21 @@ public class PlayerController : MonoBehaviour
             shootRateTime = Time.time + shootRate;
         }
     }
+    //--------------------- métodos públicos para el dash --------------------------//
+    public Vector3 GetMoveDirection()
+    {
+        return moveDirection;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+    }
+
 } 
+
