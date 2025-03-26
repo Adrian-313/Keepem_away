@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootForce = 1000f;
     [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float playerHealth = 100;
     private bool canMove = true;   // Deteccioón para el dash
     public Transform SpawnBullet;
     public GameObject Bullet;
@@ -112,5 +113,18 @@ public class PlayerController : MonoBehaviour
         canMove = value;
     }
 
+    //----------Reducir vida de acuerdo al daño recibido por la bala ----------//
+    public void TakeDamage(float damage)
+    {
+        playerHealth -= damage;
+        if(playerHealth <= 0){
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
 } 
 

@@ -28,12 +28,6 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //public void PauseGame()
     //{
 
