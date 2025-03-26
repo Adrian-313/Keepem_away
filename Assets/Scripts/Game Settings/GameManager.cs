@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public bool isPaused;
     public bool isGameOver;
-    //public bool isPaused = false;
 
     private void Awake()
     {
@@ -25,24 +25,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         isGameOver = false;
     }
 
-    //public void PauseGame()
-    //{
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
 
-    //    isPaused = !isPaused;
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        }
 
-    //    if (isPaused)
-    //    {
-    //        Time.timeScale = 0;
-    //    }
-
-    //    else
-    //    {
-    //        Time.timeScale = 1;
-    //    }
-    //}
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
 
     public void GameOver()
     {
