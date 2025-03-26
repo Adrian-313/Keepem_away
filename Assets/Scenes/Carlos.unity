@@ -5005,6 +5005,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: musicSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 43082ced93bfa5048984eaf3e31af449, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: musicSounds.Array.data[0].name
+      value: Menu Theme
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814326389789683918, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
