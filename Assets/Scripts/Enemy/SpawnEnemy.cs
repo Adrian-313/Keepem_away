@@ -3,31 +3,35 @@ using System.Collections;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject[] SpawnEnemyPrefab; 
-    public Transform[] SpawnPoints; 
-    [SerializeField] private float initialSpawnRate = 5f; // Tiempo inicial entre spawns
-    [SerializeField] private float minSpawnRate = 1f; // Tiempo mínimo entre spawns
-    [SerializeField] private float spawnAcceleration = 0.9f; // Factor de reducción del tiempo
+    public Transform[] SpawnPoints;
+    [SerializeField] private float initialSpawnRate = 5f;
+    [SerializeField] private float minSpawnRate = 1f;
+    [SerializeField] private float spawnAcceleration = 0.9f;
 
     private float currentSpawnRate;
 
-    void Start()
+    private void Start()
     {
         currentSpawnRate = initialSpawnRate;
         StartCoroutine(SpawnEnemies());
     }
 
-    IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemies()
     {
-        while (true) // Bucle infinito
+        while (true)
         {
             yield return new WaitForSeconds(currentSpawnRate);
 
             Transform spawnPoint = SpawnPoints[Random.Range(0, SpawnPoints.Length)];
-            int indexEnemy = Random.Range(0, SpawnEnemyPrefab.Length);
-            Instantiate(SpawnEnemyPrefab[indexEnemy], spawnPoint.position, spawnPoint.rotation);
+            int enemyType = Random.Range(0, EnemyPool.Instance.enemyPrefabs.Length); // Tipo de enemigo aleatorio
+            GameObject enemy = EnemyPool.Instance.UseEnemy(enemyType);
 
-            // Reducimos el tiempo de spawn progresivamente hasta el mínimo
+            if (enemy != null)
+            {
+                enemy.transform.position = spawnPoint.position;
+                enemy.transform.rotation = spawnPoint.rotation;
+            }
+
             currentSpawnRate = Mathf.Max(minSpawnRate, currentSpawnRate * spawnAcceleration);
         }
     }

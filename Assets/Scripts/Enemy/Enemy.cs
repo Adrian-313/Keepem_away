@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     //----------Hacer daño año al jugador----------//
@@ -71,7 +71,10 @@ public class Enemy : MonoBehaviour
                 playerControllerHealth.TakeDamage(attackDamage); 
 
             }
+        }
 
+        if(collision.gameObject.CompareTag("Bullet")){
+            gameObject.SetActive(false);
         }
     }
 
