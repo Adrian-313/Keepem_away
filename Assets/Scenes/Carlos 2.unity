@@ -697,7 +697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &258084136
 Transform:
   m_ObjectHideFlags: 0
@@ -725,6 +725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d220e2451dfc14d975919750134508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: b0226442b45aafc48a3224ab96665944, type: 2}
+  musicSlider: {fileID: 5100122125053969281}
+  SFXSlider: {fileID: 7733735844929889182}
 --- !u!1001 &341972581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2553,9 +2556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 454307187}
-  restartButton: {fileID: 1160831096}
-  backToMenuButton: {fileID: 154773974}
-  resumeGameButton: {fileID: 1065940502}
 --- !u!1 &1915447960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,9 +3470,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
-        m_MethodName: MuteAll
+      - m_Target: {fileID: 258084137}
+        m_TargetAssemblyTypeName: InGameVolume, Assembly-CSharp
+        m_MethodName: ToggleMute
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
