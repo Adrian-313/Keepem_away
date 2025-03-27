@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootForce = 1000f;
     [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float playerHealth = 100;
     [SerializeField]private Transform SpawnBullet;
+    public float playerHealth = 100;
     private bool canMove = true;   // Deteccioón para el dash
     private Rigidbody rb;
     private Vector3 moveDirection;
@@ -91,13 +91,16 @@ public class PlayerController : MonoBehaviour
         if (Time.time > shootRateTime)
         {
             GameObject bullet = BulletPool.Instance.useBullet();
-            if(bullet.TryGetComponent(out Rigidbody bulletRb)){
-                bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
-            }
-
             bullet.transform.position = SpawnBullet.position;
             bullet.transform.rotation = SpawnBullet.rotation;
 
+            
+            if(bullet.TryGetComponent(out Rigidbody bulletRb)){
+
+                bulletRb.linearVelocity = Vector3.zero; // Reinicia la velocidad antes de disparar
+                bulletRb.angularVelocity = Vector3.zero; // Evita rotaciones no deseadas
+                bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
+            }
             shootRateTime = Time.time + shootRate;
         }
     }

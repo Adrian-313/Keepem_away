@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 3f; 
+    [SerializeField] private float moveSpeed = 1.5f; 
     [SerializeField] private float rotationSpeed = 5f; 
     [SerializeField] private float enemyHealth = 100f;
     [SerializeField] private float attackDamage= 10f;
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (playerTransform != null)
         {
@@ -37,10 +37,11 @@ public class Enemy : MonoBehaviour
 
         // Rotación suave hacia el jugador
         Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
 
         // Moverse hacia el jugador
-        transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.linearVelocity = directionToPlayer * moveSpeed;
     }
 
     //----------Reducir vida de acuerdo al daño recibido por la bala----------//

@@ -853,9 +853,9 @@ MonoBehaviour:
   - {fileID: 729092073}
   - {fileID: 1800026325}
   - {fileID: 188699568}
-  initialSpawnRate: 3
+  initialSpawnRate: 5
   minSpawnRate: 0.2
-  spawnAcceleration: 0.9
+  spawnAcceleration: 0.95
 --- !u!4 &467053993
 Transform:
   m_ObjectHideFlags: 0
