@@ -7,7 +7,7 @@ public class InGameVolume : MonoBehaviour
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider SFXSlider;
-    private bool isMute;
+    //private bool isMute;
 
     private void Start()
     {
@@ -32,32 +32,32 @@ public class InGameVolume : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void ToggleMute()
-    {
-        isMute = !isMute;
-        PlayerPrefs.SetInt("isMuted", isMute ? 1 : 0);
-        PlayerPrefs.Save();
-        ApplyMute();
-    }
+    //public void ToggleMute()
+    //{
+    //    isMute = !isMute;
+    //    PlayerPrefs.SetInt("isMuted", isMute ? 1 : 0);
+    //    PlayerPrefs.Save();
+    //    ApplyMute();
+    //}
 
-    private void ApplyMute()
-    {
-        if (isMute)
-        {
-            myMixer.SetFloat("Master Volume", -80f);
-        }
-        else
-        {
-            float volume = Mathf.Log10(PlayerPrefs.GetFloat("musicVolume", 0.75f)) * 20;
-            myMixer.SetFloat("Master Volume", volume);
-        }
-    }
+    //private void ApplyMute()
+    //{
+    //    if (isMute)
+    //    {
+    //        myMixer.SetFloat("Master Volume", -80f);
+    //    }
+    //    else
+    //    {
+    //        float volume = Mathf.Log10(PlayerPrefs.GetFloat("musicVolume", 0.75f)) * 20;
+    //        myMixer.SetFloat("Master Volume", volume);
+    //    }
+    //}
 
     private void LoadSettings()
     {
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume", 0.75f);
         SFXSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
-        isMute = PlayerPrefs.GetInt("isMuted", 0) == 1;
-        ApplyMute();
+        //isMute = PlayerPrefs.GetInt("isMuted", 0) == 1;
+        //ApplyMute();
     }
 }

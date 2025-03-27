@@ -8,7 +8,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private AudioMixer myMixer;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider SFXSlider;
-    public bool isMute;
+    //public bool isMute;
 
     // Start is called before the first frame update
     void Start()
@@ -50,18 +50,18 @@ public class VolumeSettings : MonoBehaviour
         SetSFXVolume();
     }
 
-    public void MuteAll()
-    {
-        isMute = !isMute;
-        if (isMute)
-        {
-            myMixer.SetFloat("Master Volume", -80f);
-            Debug.Log("No hay sonido");
-        }
-        else
-        {
-            myMixer.SetFloat("Master Volume", 0f);
-            Debug.Log("Sí hay sonido");
-        }
-    }
+    //public void MuteAll()
+    //{
+    //    isMute = !isMute;
+    //    if (isMute)
+    //    {
+    //        myMixer.SetFloat("Master Volume", -80f);
+    //        Debug.Log("No hay sonido");
+    //    }
+    //    else
+    //    {
+    //        myMixer.SetFloat("Master Volume", 0f);
+    //        Debug.Log("Sí hay sonido");
+    //    }
+    //}
 }
