@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+        GameManager.Instance.GameOver();
     }
 } 
 

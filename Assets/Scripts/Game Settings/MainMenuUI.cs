@@ -14,6 +14,6 @@ public class MainMenuUI : MonoBehaviour
     public void NextScene()
     {
         //Debug.Log("Cambio de escena");
-        GameManager.Instance.ChangeScene("Carlos 2");
+        GameManager.Instance.ChangeScene("julian");
     }
 }

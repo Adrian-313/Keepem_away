@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Carlos 2.unity
     guid: 86c531f1dc99fb248be65d79bdbfac8b
+  - enabled: 1
+    path: Assets/Scenes/julian.unity
+    guid: ddad5a07907809e4cabf32107a1a14e9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
