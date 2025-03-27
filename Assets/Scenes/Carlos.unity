@@ -2782,7 +2782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142c2ecc0bef78544bc51f6ddb1c91db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playGameButton: {fileID: 166375778}
 --- !u!1 &1554109206
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1004160179080113516
 MonoBehaviour:
   m_ObjectHideFlags: 0
