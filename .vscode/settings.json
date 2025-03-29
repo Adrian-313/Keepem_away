@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Keepem Away.sln"
+    "dotnet.defaultSolution": "Keepem_away.sln"
 }

@@ -1,35 +1,46 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float shootRateTime = 1f;
     [SerializeField] private float shootForce = 1000f;
     [SerializeField] private float shootRate = 0.5f;
-    [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField]private Transform SpawnBullet;
+    [SerializeField] private float rotationSpeed = 5f; // 📌 Ajusta la velocidad de rotación
+    [SerializeField] private Transform SpawnBullet;
+    [SerializeField] private Transform cameraTransform; // 📌 Asigna la cámara en el Inspector
+    [SerializeField] private float dashSpeed = 10f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1f;
+
     public float playerHealth = 100;
-    private bool canMove = true;   // Deteccioón para el dash
+    private bool canMove = true;
     private Rigidbody rb;
     private Vector3 moveDirection;
-    private Vector2 lookValue;
     private bool isFiring = false;
+    private bool isDashing = false;
+    private float nextDashTime = 0f;
+    private Vector2 moveInput; 
+    private Vector2 lookInput; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void FixedUpdate()
     {
-        Move();
+        if (!isDashing)
+        {
+            Move();
+        }
     }
 
     void Update()
     {
-        RotatePlayer();
+        RotateWithCamera(); //Rotación más fluida
         if (isFiring)
         {
             Shoot();
@@ -38,13 +49,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 moveValue = context.ReadValue<Vector2>();
-        moveDirection = new Vector3(moveValue.x, 0f, moveValue.y).normalized;
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookValue = context.ReadValue<Vector2>();
+        moveInput = context.ReadValue<Vector2>(); // Guardar la entrada del jugador
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -54,37 +59,34 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        if(canMove)
+        if (canMove)
         {
+            // Obtener la dirección de la cámara
+            Vector3 forward = cameraTransform.forward;
+            Vector3 right = cameraTransform.right;
+            forward.y = 0;
+            right.y = 0;
+            forward.Normalize();
+            right.Normalize();
+
+            // Aplicar la dirección del movimiento basada en la cámara
+            moveDirection = (forward * moveInput.y + right * moveInput.x).normalized;
+
             rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
-    public void RotatePlayer()
-{
-    if (SystemInfo.deviceType == DeviceType.Handheld) // En móvil, usa joystick
+
+    private void RotateWithCamera()
     {
-        if (lookValue.sqrMagnitude > 0.01f)
+        if (cameraTransform != null)
         {
-            Vector3 lookDirection = new Vector3(lookValue.x, 0, lookValue.y);
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            // 🔹 El personaje rota completamente hacia la dirección de la cámara sin depender del movimiento
+            Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-    else // En PC, usa el puntero del mouse
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("MouseLayer")))
-        {
-            //print(hit.collider.gameObject.name);
-            Vector3 lookDirection = hit.point - transform.position;
-            lookDirection.y = 0; // No rotar en el eje Y
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
-}
+
 
     public void Shoot()
     {
@@ -94,17 +96,41 @@ public class PlayerController : MonoBehaviour
             bullet.transform.position = SpawnBullet.position;
             bullet.transform.rotation = SpawnBullet.rotation;
 
-            
-            if(bullet.TryGetComponent(out Rigidbody bulletRb)){
-
-                bulletRb.linearVelocity = Vector3.zero; // Reinicia la velocidad antes de disparar
-                bulletRb.angularVelocity = Vector3.zero; // Evita rotaciones no deseadas
+            if (bullet.TryGetComponent(out Rigidbody bulletRb))
+            {
+                bulletRb.linearVelocity = Vector3.zero;
+                bulletRb.angularVelocity = Vector3.zero;
                 bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
             }
             shootRateTime = Time.time + shootRate;
         }
     }
-    //--------------------- métodos públicos para el dash --------------------------//
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed && Time.time >= nextDashTime)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    private System.Collections.IEnumerator Dash()
+    {
+        isDashing = true;
+        canMove = false;
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashDuration)
+        {
+            rb.MovePosition(transform.position + moveDirection * dashSpeed * Time.fixedDeltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
+        canMove = true;
+        nextDashTime = Time.time + dashCooldown;
+    }
+
     public Vector3 GetMoveDirection()
     {
         return moveDirection;
@@ -120,11 +146,11 @@ public class PlayerController : MonoBehaviour
         canMove = value;
     }
 
-    //----------Reducir vida de acuerdo al daño recibido por la bala ----------//
     public void TakeDamage(float damage)
     {
         playerHealth -= damage;
-        if(playerHealth <= 0){
+        if (playerHealth <= 0)
+        {
             Die();
         }
     }
@@ -134,5 +160,4 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
         GameManager.Instance.GameOver();
     }
-} 
-
+}
