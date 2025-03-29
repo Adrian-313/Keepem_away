@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject objectToBillboard;
+    private void LateUpdate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Camera.main != null)
+        {
+            objectToBillboard.transform.rotation = Camera.main.transform.rotation;
+        }
     }
 }

@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused;
     public bool isGameOver;
+    public int playerScore = 0;
+    public int playerCoins { get; private set; }
+
 
     private void Awake()
     {
@@ -59,5 +62,18 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(nameScene);
         isGameOver = false;
+    }
+
+    public void AddScore(int points)
+    {
+        playerScore += points;
+        Debug.Log("Puntos actuales: " + playerScore);
+        // Aquí podrías también actualizar la UI del score
+    }
+    public void AddCoins(int amount)
+    {
+        playerCoins += amount;
+        Debug.Log($"Monedas: {playerCoins}");
+        // Aquí puedes notificar a la UI para actualizar
     }
 }

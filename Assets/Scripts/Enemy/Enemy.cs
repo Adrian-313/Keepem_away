@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float rotationSpeed = 5f; 
     [SerializeField] private float enemyHealth = 100f;
     [SerializeField] private float attackDamage= 10f;
+
+    [SerializeField] private GameObject coinPrefab; // Asigna el prefab de moneda en el Inspector
+    [SerializeField] private int coinsToDrop = 1; // Cantidad de monedas a soltar
+    [SerializeField] private float coinDropForce = 3f; // Fuerza al lanzar la moneda
+    public GameObject textDamage;
     private Transform playerTransform;
 
     void Start()
@@ -47,6 +52,8 @@ public class Enemy : MonoBehaviour
     //----------Reducir vida de acuerdo al daño recibido por la bala----------//
     public void TakeDamage(float damage)
     {
+        FloatingText floatingText = Instantiate(textDamage,transform.position,Quaternion.identity).GetComponent<FloatingText>();
+        _ = floatingText.SendText(damage.ToString(), Color.white);
         enemyHealth -= damage;
         if(enemyHealth <= 0){
             Die();
@@ -55,13 +62,16 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        GameManager.Instance.AddScore(1);
+        DropCoins(); // Llamar a la función de soltar monedas
         gameObject.SetActive(false);
     }
 
     //----------Hacer daño año al jugador----------//
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player")){
+        if(collision.gameObject.CompareTag("Player"))
+        {
 
             Debug.Log("esta colisiionando");
 
@@ -74,8 +84,31 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if(collision.gameObject.CompareTag("Bullet")){
-            gameObject.SetActive(false);
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            if(bullet != null)
+            {
+                TakeDamage(bullet.damage); // Aplicar el daño específico de la bala
+            }
+             
+        }
+    }
+
+    void DropCoins()
+    {
+        for (int i = 0; i < coinsToDrop; i++)
+        {
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            
+            // Añadir fuerza aleatoria para efecto más interesante
+            Vector3 randomForce = new Vector3(
+                Random.Range(-1f, 1f),
+                Random.Range(0.5f, 1f),
+                Random.Range(-1f, 1f)
+            ) * coinDropForce;
+            
+            coin.GetComponent<Rigidbody>().AddForce(randomForce, ForceMode.Impulse);
         }
     }
 
