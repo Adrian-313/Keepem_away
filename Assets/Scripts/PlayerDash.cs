@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerDash : MonoBehaviour
@@ -8,16 +9,13 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
-    [SerializeField] private bool useCameraRelativeDash = true;
     
     private Rigidbody rb;
     private PlayerController playerController;
-    private Vector3 moveDirection;
+    private Vector3 dashDirection;
     private bool isDashing = false;
     private float dashCooldownTimer = 0f;
-    private Camera mainCamera;
 
-    // Efectos visuales (opcional)
     [Header("Effects")]
     [SerializeField] private TrailRenderer dashTrail;
     [SerializeField] private ParticleSystem dashParticles;
@@ -26,8 +24,7 @@ public class PlayerDash : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
-        mainCamera = Camera.main;
-        
+
         if (dashTrail != null) dashTrail.emitting = false;
     }
 
@@ -39,52 +36,45 @@ public class PlayerDash : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator PerformDash()
+    private IEnumerator PerformDash()
     {
-        // Obtener la dirección actual del movimiento
-        moveDirection = playerController.GetMoveDirection();
-        
-        // Si no hay input de movimiento, dash hacia adelante
-        if (moveDirection == Vector3.zero)
-        {
-            moveDirection = transform.forward;
-        }
-        
-        // Opcional: hacer el dash relativo a la cámara
-        if (useCameraRelativeDash && mainCamera != null)
-        {
-            Vector3 cameraForward = mainCamera.transform.forward;
-            cameraForward.y = 0;
-            moveDirection = Quaternion.LookRotation(cameraForward) * moveDirection;
-        }
-
-        // Iniciar dash
         isDashing = true;
         dashCooldownTimer = dashCooldown;
-        
+
+        // Obtener dirección de movimiento del input (WASD)
+        dashDirection = playerController.GetMoveDirection();
+
+        // Si el jugador no se está moviendo, usar la dirección hacia adelante
+        if (dashDirection == Vector3.zero)
+        {
+            dashDirection = transform.forward;
+        }
+
+        // Normalizar dirección para evitar dash más lento en diagonales
+        dashDirection.Normalize();
+
         // Activar efectos
         if (dashTrail != null) dashTrail.emitting = true;
         if (dashParticles != null) dashParticles.Play();
-        
-        // Guardar velocidad original y desactivar control de movimiento
-        float originalSpeed = playerController.GetMoveSpeed();
+
+        // Desactivar control de movimiento mientras dura el dash
         playerController.SetCanMove(false);
 
         float startTime = Time.time;
-        
-        // Ejecutar dash
+
+        // Aplicar la velocidad del dash durante el tiempo indicado
         while (Time.time < startTime + dashDuration)
         {
-            rb.linearVelocity = moveDirection * dashSpeed;
+            rb.linearVelocity = dashDirection * dashSpeed;
             yield return null;
         }
-        
-        // Finalizar dash
+
+        // Restaurar control del movimiento
         isDashing = false;
-        rb.linearVelocity = moveDirection * originalSpeed;
+        rb.linearVelocity = Vector3.zero;
         playerController.SetCanMove(true);
-        
-        // Desactivar efectos
+
+        // Desactivar efectos visuales
         if (dashTrail != null) dashTrail.emitting = false;
     }
 
@@ -96,3 +86,5 @@ public class PlayerDash : MonoBehaviour
         }
     }
 }
+
+
