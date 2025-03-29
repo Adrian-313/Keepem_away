@@ -153,6 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  rotationSpeed: 5
+  enemyHealth: 100
+  attackDamage: 10
+  coinPrefab: {fileID: 6456978960687450651, guid: 7a4f041b24d71934bb2ce9b52d000840, type: 3}
+  coinsToDrop: 2
+  coinDropForce: 3
+  textDamage: {fileID: 4463776484946446894, guid: 9d182e5a9cdb26a49920b0bf4a71643e, type: 3}
 --- !u!1 &8552901344126300472
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class SpawnEnemy : MonoBehaviour
     public Transform[] SpawnPoints;
     [SerializeField] private float initialSpawnRate = 5f;
     [SerializeField] private float minSpawnRate = 1f;
-    [SerializeField] private float spawnAcceleration = 0.9f;
+    [SerializeField] private float spawnAcceleration = 0.95f;
     private PlayerController playerController;
     private float currentSpawnRate;
 
