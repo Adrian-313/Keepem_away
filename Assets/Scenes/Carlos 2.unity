@@ -5265,6 +5265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 1610636800397835387}
+  visibleIndicators: {fileID: 1751130833}
 --- !u!222 &6944598616152962367
 CanvasRenderer:
   m_ObjectHideFlags: 0
