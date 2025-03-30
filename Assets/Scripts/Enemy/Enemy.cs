@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int coinsToDrop = 1; // Cantidad de monedas a soltar
     [SerializeField] private float coinDropForce = 3f; // Fuerza al lanzar la moneda
     public GameObject textDamage;
+    private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
 
     void Start()
     {
+        enemyNavMeshAgent = GetComponent<NavMeshAgent>();
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -30,7 +33,8 @@ public class Enemy : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            MoveEnemy();
+            enemyNavMeshAgent.SetDestination(playerTransform.position);
+            //MoveEnemy();
         }
     }
 
@@ -91,7 +95,6 @@ public class Enemy : MonoBehaviour
             {
                 TakeDamage(bullet.damage); // Aplicar el daño específico de la bala
             }
-             
         }
     }
 
