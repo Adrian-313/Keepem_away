@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    public event Action OnSceneReloaded;
 
     public bool isPaused;
     public bool isGameOver;
@@ -54,14 +58,15 @@ public class GameManager : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isGameOver = false;
+        OnSceneReloaded.Invoke();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeScene(string nameScene)
     {
-        SceneManager.LoadScene(nameScene);
         isGameOver = false;
+        SceneManager.LoadScene(nameScene);
     }
 
     public void AddScore(int points)
