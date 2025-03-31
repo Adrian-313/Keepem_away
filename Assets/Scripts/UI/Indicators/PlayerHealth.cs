@@ -8,6 +8,11 @@ public class PlayerHealth : MonoBehaviour
 
     public HealthBar healthBar;
 
+    private void Awake()
+    {
+        GameManager.Instance.OnSceneReloaded += HealthReset;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,5 +38,15 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+    }
+
+    private void HealthReset()
+    {
+        currentHealth = maxHealth;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnSceneReloaded -= HealthReset;
     }
 }

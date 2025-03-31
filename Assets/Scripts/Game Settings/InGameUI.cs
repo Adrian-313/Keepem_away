@@ -5,19 +5,13 @@ using UnityEngine.UI;
 public class InGameUI : MonoBehaviour
 {
     public GameObject gameOverScreen;
-    //public Button restartButton;
-    //public Button backToMenuButton;
-
-    //public Button resumeGameButton;
+    public GameObject visibleIndicators;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameOverScreen.gameObject.SetActive(false);
-
-        //restartButton.onClick.AddListener(ReloadGame);
-        //backToMenuButton.onClick.AddListener(BackToMenu);
-        //resumeGameButton.onClick.AddListener(GamePaused);
+        visibleIndicators.gameObject.SetActive(true);
     }
 
     public void ReloadGame()
@@ -43,6 +37,7 @@ public class InGameUI : MonoBehaviour
         if (GameManager.Instance.isGameOver)
         {
             gameOverScreen.gameObject.SetActive(true);
+            visibleIndicators.gameObject.SetActive(false);
         }
     }
 }
