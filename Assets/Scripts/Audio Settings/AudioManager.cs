@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-
         else
         {
             Destroy(this.gameObject);
@@ -31,30 +30,28 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null)
+        if (s == null || s.clips.Length == 0)
         {
             Debug.Log("Sound Not Found");
+            return;
         }
 
-        else
-        {
-            musicSource.clip = s.clip;
-            musicSource.Play();
-        }
+        musicSource.clip = s.clips[0]; // Asumiendo que la música tiene un solo clip
+        musicSource.Play();
     }
 
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
-        if (s == null)
+        if (s == null || s.clips.Length == 0)
         {
             Debug.Log("Sound Not Found");
+            return;
         }
 
-        else
-        {
-            sfxSource.PlayOneShot(s.clip);
-        }
+        // Seleccionar un sonido aleatorio dentro de la categoría
+        AudioClip randomClip = s.clips[UnityEngine.Random.Range(0, s.clips.Length)];
+        sfxSource.PlayOneShot(randomClip);
     }
 }
