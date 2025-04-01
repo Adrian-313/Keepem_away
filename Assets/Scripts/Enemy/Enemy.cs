@@ -34,23 +34,7 @@ public class Enemy : MonoBehaviour
         if (playerTransform != null)
         {
             enemyNavMeshAgent.SetDestination(playerTransform.position);
-            //MoveEnemy();
         }
-    }
-
-    void MoveEnemy()
-    {
-        // Dirección hacia el jugador
-        Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-        directionToPlayer.y = 0; // Evita que el enemigo gire en el eje Y
-
-        // Rotación suave hacia el jugador
-        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
-
-        // Moverse hacia el jugador
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = directionToPlayer * moveSpeed;
     }
 
     //----------Reducir vida de acuerdo al daño recibido por la bala----------//
