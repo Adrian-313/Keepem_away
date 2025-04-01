@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public float coinScore = 500f;
     public float playerHealth = 100;
+    public float coinScore = 500f;
     private bool canMove = true;
     private Rigidbody rb;
     private Vector3 moveDirection;

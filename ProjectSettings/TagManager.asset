@@ -7,7 +7,7 @@ TagManager:
   - Bullet
   - Coin
   - Obstacle
-  - Enemy
+  - Turret
   layers:
   - Default
   - TransparentFX
@@ -15,7 +15,7 @@ TagManager:
   - MouseLayer
   - Water
   - UI
-  - Enemy
+  - 
   - 
   - 
   - 
