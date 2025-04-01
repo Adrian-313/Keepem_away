@@ -6,28 +6,33 @@ public class BulletPool : MonoBehaviour
     private static BulletPool instance;
     public static BulletPool Instance { get { return instance; } }
 
-    [SerializeField] private int poolSize = 10;
+    [SerializeField] private int poolSize = 20; // Aumentado para triple disparo
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private List<GameObject> bulletList;
+    private List<GameObject> bulletList;
+
+    public bool TripleShotActive { get; private set; } = false;
 
     void Start()
     {
-        instance = this; // Asegura que la instancia se asigne correctamente
-        bulletList = new List<GameObject>(); // Asegura que la lista esté inicializada
+        instance = this;
+        bulletList = new List<GameObject>();
         MakePool(poolSize);
     }
 
-
-    //Creamos la piscina de acuerdo al size que hemos definido 
     void MakePool(int size)
     {
         for (int i = 0; i < size; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab); //Instanciamos el prefab
-            bullet.SetActive(false); // Desactivamos el prefab
-            bulletList.Add(bullet); // lo añadimos a la lista anteriormente creada 
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.SetActive(false);
             bullet.transform.parent = transform;
+            bulletList.Add(bullet);
         }
+    }
+
+    public void SetTripleShot(bool active)
+    {
+        TripleShotActive = active;
     }
 
     public GameObject useBullet()
@@ -41,10 +46,11 @@ public class BulletPool : MonoBehaviour
             }
         }
 
-        MakePool(1);
-        bulletList[bulletList.Count - 1].SetActive(true);
-        return bulletList[bulletList.Count - 1];
-
+        // Expandir pool si es necesario
+        GameObject newBullet = Instantiate(bulletPrefab);
+        newBullet.transform.parent = transform;
+        bulletList.Add(newBullet);
+        newBullet.SetActive(true);
+        return newBullet;
     }
-
 }

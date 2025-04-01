@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
 
+    public float coinScore = 500f;
     public float playerHealth = 100;
     private bool canMove = true;
     private Rigidbody rb;
@@ -88,10 +89,31 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void Shoot()
+   public void Shoot()
+{
+    if (Time.time > shootRateTime)
     {
-        if (Time.time > shootRateTime)
+        if (BulletPool.Instance.TripleShotActive)
         {
+            // Disparo triple
+            for (int i = -1; i <= 1; i++) // -1, 0, 1 para tres balas
+            {
+                GameObject bullet = BulletPool.Instance.useBullet();
+                Vector3 spawnPosition = SpawnBullet.position + SpawnBullet.right * i * 0.5f; // Espaciado
+                bullet.transform.position = spawnPosition;
+                bullet.transform.rotation = SpawnBullet.rotation;
+
+                if (bullet.TryGetComponent(out Rigidbody bulletRb))
+                {
+                    bulletRb.linearVelocity = Vector3.zero;
+                    bulletRb.angularVelocity = Vector3.zero;
+                    bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
+                }
+            }
+        }
+        else
+        {
+            // Disparo normal
             GameObject bullet = BulletPool.Instance.useBullet();
             bullet.transform.position = SpawnBullet.position;
             bullet.transform.rotation = SpawnBullet.rotation;
@@ -102,9 +124,11 @@ public class PlayerController : MonoBehaviour
                 bulletRb.angularVelocity = Vector3.zero;
                 bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
             }
-            shootRateTime = Time.time + shootRate;
         }
+
+        shootRateTime = Time.time + shootRate;
     }
+}
 
     public void OnDash(InputAction.CallbackContext context)
     {

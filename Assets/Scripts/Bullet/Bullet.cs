@@ -4,10 +4,13 @@ using System.Collections;
 public class Bullet : MonoBehaviour
 {   
     [SerializeField] private float lifeTime = 3f; // Tiempo antes de desactivarse
-    public float damage = 34;
+    public float damage;
+    [SerializeField] private float minDamage = 10f; // Daño mínimo
+    [SerializeField] private float maxDamage = 35f; // Daño máximo
 
     private void OnEnable()
     {
+        damage = Mathf.Round(Random.Range(minDamage, maxDamage));
         StartCoroutine(DeactivateAfterTime()); // Inicia la cuenta regresiva
     }
 
@@ -19,6 +22,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        gameObject.SetActive(false);
+        if (BulletPool.Instance != null)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
