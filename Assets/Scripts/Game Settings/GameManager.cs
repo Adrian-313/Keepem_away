@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     public void SubtractCoins(int amount)
     {
         playerCoins -= amount;
-        // Opcional: Actualizar UI aquí
+       
     }
 
 }
