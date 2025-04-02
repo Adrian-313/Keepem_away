@@ -15798,6 +15798,30 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1354380829391989634, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354380829391989634, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1354380829391989634, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317284372592962433, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317284372592962433, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317284372592962433, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.49995
+      objectReference: {fileID: 0}
     - target: {fileID: 2514297123155727385, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
       propertyPath: m_fontSize
       value: 50
@@ -15809,6 +15833,14 @@ PrefabInstance:
     - target: {fileID: 2514297123155727385, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
       propertyPath: m_enableAutoSizing
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094246796660157101, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3094246796660157101, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3462246882212721506, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
       propertyPath: m_Name
@@ -15862,12 +15894,36 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5513266647605539687, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: optionsPanel
+      value: 
+      objectReference: {fileID: 1601393994}
+    - target: {fileID: 6086162372805796991, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePause
+      objectReference: {fileID: 0}
     - target: {fileID: 7576516015605100503, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7576516015605100503, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678856355356639708, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.49995
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678856355356639708, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828877444693969529, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941185687932735502, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8072762120441611223, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
@@ -19775,6 +19831,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.6792827, y: 7.161078, z: 7.33914}
   m_Center: {x: 0.018656103, y: 3.580539, z: 0.018811522}
+--- !u!1 &1601393994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7941185687932735502, guid: 3099acf749b7c1f49a68746c0ccac4da, type: 3}
+  m_PrefabInstance: {fileID: 1283972247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1604324803
 PrefabInstance:
   m_ObjectHideFlags: 0
