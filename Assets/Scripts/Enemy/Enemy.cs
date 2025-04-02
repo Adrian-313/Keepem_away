@@ -14,9 +14,11 @@ public class Enemy : MonoBehaviour
     public GameObject textDamage;
     private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
+    private Animator enemyAnimator;
 
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -60,7 +62,8 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-
+            enemyAnimator.SetBool("isAttacking", true);
+            enemyAnimator.SetBool("isRunning", false);
             Debug.Log("esta colisiionando");
 
             PlayerController playerControllerHealth = collision.gameObject.GetComponentInParent<PlayerController>();
@@ -79,6 +82,24 @@ public class Enemy : MonoBehaviour
             {
                 TakeDamage(bullet.damage); // Aplicar el daño específico de la bala
             }
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            enemyAnimator.SetBool("isAttacking", true);
+            enemyAnimator.SetBool("isRunning", false);
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            enemyAnimator.SetBool("isAttacking", false);
+            enemyAnimator.SetBool("isRunning", true);
         }
     }
 
