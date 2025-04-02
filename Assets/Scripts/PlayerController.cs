@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1f;
 
-    public float coinScore = 500f;
     public float playerHealth = 100;
     private bool canMove = true;
     private Rigidbody rb;
@@ -26,12 +25,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput; 
     private Vector2 lookInput; 
     private Animator playerAnimator;
+    public HealthBar healthBarRef;
     private Quaternion lastRotation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        healthBarRef.SetMaxHealth(playerHealth);
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -190,6 +191,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerHealth -= damage;
+        healthBarRef.SetHealth(playerHealth);
         if (playerHealth <= 0)
         {
             Die();
