@@ -81,4 +81,10 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Monedas: {playerCoins}");
         // Aquí puedes notificar a la UI para actualizar
     }
+    public void SubtractCoins(int amount)
+    {
+        playerCoins -= amount;
+        // Opcional: Actualizar UI aquí
+    }
+
 }
