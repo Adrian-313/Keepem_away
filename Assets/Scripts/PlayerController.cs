@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,10 +25,13 @@ public class PlayerController : MonoBehaviour
     private float nextDashTime = 0f;
     private Vector2 moveInput; 
     private Vector2 lookInput; 
+    private Animator playerAnimator;
+    private Quaternion lastRotation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -45,12 +49,17 @@ public class PlayerController : MonoBehaviour
         if (isFiring)
         {
             Shoot();
+            playerAnimator.SetBool("isShooting", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isShooting", false);
         }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = context.ReadValue<Vector2>(); // Guardar la entrada del jugador
+        moveInput = context.ReadValue<Vector2>(); //Guardar la entrada del jugador
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -74,6 +83,8 @@ public class PlayerController : MonoBehaviour
             moveDirection = (forward * moveInput.y + right * moveInput.x).normalized;
 
             rb.MovePosition(transform.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+            playerAnimator.SetFloat("runSpeed", moveDirection.magnitude * moveSpeed);
         }
     }
 
@@ -85,9 +96,13 @@ public class PlayerController : MonoBehaviour
             // 🔹 El personaje rota completamente hacia la dirección de la cámara sin depender del movimiento
             Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            float rotationSpeedValue = Quaternion.Angle(lastRotation, transform.rotation);
+            playerAnimator.SetFloat("rotationSpeed", rotationSpeedValue);
+
+            lastRotation = transform.rotation;
         }
     }
-
 
    public void Shoot()
 {
@@ -142,6 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         isDashing = true;
         canMove = false;
+        playerAnimator.SetBool("IsDashing", true);
         float startTime = Time.time;
 
         while (Time.time < startTime + dashDuration)
@@ -152,6 +168,7 @@ public class PlayerController : MonoBehaviour
 
         isDashing = false;
         canMove = true;
+        playerAnimator.SetBool("IsDashing", false);
         nextDashTime = Time.time + dashCooldown;
     }
 

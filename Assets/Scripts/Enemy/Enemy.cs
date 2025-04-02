@@ -14,9 +14,11 @@ public class Enemy : MonoBehaviour
     public GameObject textDamage;
     private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
+    private Animator enemyAnimator;
 
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -34,23 +36,7 @@ public class Enemy : MonoBehaviour
         if (playerTransform != null)
         {
             enemyNavMeshAgent.SetDestination(playerTransform.position);
-            //MoveEnemy();
         }
-    }
-
-    void MoveEnemy()
-    {
-        // Dirección hacia el jugador
-        Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-        directionToPlayer.y = 0; // Evita que el enemigo gire en el eje Y
-
-        // Rotación suave hacia el jugador
-        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.fixedDeltaTime);
-
-        // Moverse hacia el jugador
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = directionToPlayer * moveSpeed;
     }
 
     //----------Reducir vida de acuerdo al daño recibido por la bala----------//
@@ -76,7 +62,8 @@ public class Enemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-
+            enemyAnimator.SetBool("isAttacking", true);
+            enemyAnimator.SetBool("isRunning", false);
             Debug.Log("esta colisiionando");
 
             PlayerController playerControllerHealth = collision.gameObject.GetComponentInParent<PlayerController>();
@@ -95,6 +82,24 @@ public class Enemy : MonoBehaviour
             {
                 TakeDamage(bullet.damage); // Aplicar el daño específico de la bala
             }
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            enemyAnimator.SetBool("isAttacking", true);
+            enemyAnimator.SetBool("isRunning", false);
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            enemyAnimator.SetBool("isAttacking", false);
+            enemyAnimator.SetBool("isRunning", true);
         }
     }
 
