@@ -22,6 +22,7 @@ public class InGameUI : MonoBehaviour
     public void BackToMenu()
     {
         //Debug.Log("Volver al menú");
+        AudioManager.Instance.PlayMusic("Menu Theme");
         GameManager.Instance.ChangeScene("Carlos");
     }
 
@@ -39,5 +40,10 @@ public class InGameUI : MonoBehaviour
             gameOverScreen.gameObject.SetActive(true);
             visibleIndicators.gameObject.SetActive(false);
         }
+    }
+
+    public void InGameButtonPressed()
+    {
+        AudioManager.Instance.PlaySFX("Button Pressed");
     }
 }
