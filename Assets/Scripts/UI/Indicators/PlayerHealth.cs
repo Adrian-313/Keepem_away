@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
-    public int currentHealth;
-
+    public float currentHealth;
     public HealthBar healthBar;
+    private PlayerController playerRef;
+    private Enemy enemyRef;
 
     private void Awake()
     {
@@ -16,33 +16,31 @@ public class PlayerHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        playerRef = FindAnyObjectByType<PlayerController>();
+        enemyRef = FindAnyObjectByType<Enemy>();
+        currentHealth = playerRef.playerHealth;
+        healthBar.SetMaxHealth(playerRef.playerHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
-
         if (currentHealth == 0)
         {
             GameManager.Instance.GameOver();
         }
     }
 
-    void TakeDamage(int damage)
+    public void UpadeHealth()
     {
-        currentHealth -= damage;
+        playerRef.TakeDamage(enemyRef.attackDamage);
+        currentHealth = playerRef.playerHealth;
         healthBar.SetHealth(currentHealth);
     }
 
     private void HealthReset()
     {
-        currentHealth = maxHealth;
+        currentHealth = playerRef.playerHealth;
     }
 
     private void OnDestroy()

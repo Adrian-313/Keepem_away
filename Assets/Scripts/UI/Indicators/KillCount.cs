@@ -3,7 +3,7 @@ using TMPro;
 
 public class KillCount : MonoBehaviour
 {
-    public int kills = 0;
+    public int kills;
     public TextMeshProUGUI killText; // Referencia al texto de la UI
 
     void Start()
@@ -13,20 +13,17 @@ public class KillCount : MonoBehaviour
 
     public void AddKill()
     {
-        kills++;
+        kills = GameManager.Instance.playerScore;
         UpdateKillUI();
     }
 
     void UpdateKillUI()
     {
-        killText.text = "Kills: " + kills;
+        killText.text = "Score: " + kills;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AddKill();
-        }
+        AddKill();
     }
 }

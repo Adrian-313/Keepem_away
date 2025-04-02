@@ -6,12 +6,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed = 1.5f; 
     [SerializeField] private float rotationSpeed = 5f; 
     [SerializeField] private float enemyHealth = 100f;
-    [SerializeField] private float attackDamage= 10f;
-
     [SerializeField] private GameObject coinPrefab; // Asigna el prefab de moneda en el Inspector
     [SerializeField] private int coinsToDrop = 1; // Cantidad de monedas a soltar
     [SerializeField] private float coinDropForce = 3f; // Fuerza al lanzar la moneda
     public GameObject textDamage;
+    public float attackDamage= 10f;
     private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
     private Animator enemyAnimator;
@@ -52,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        GameManager.Instance.AddScore(1);
+        GameManager.Instance.AddScore(10);
         DropCoins(); // Llamar a la función de soltar monedas
         gameObject.SetActive(false);
     }
@@ -71,7 +70,6 @@ public class Enemy : MonoBehaviour
             if(playerControllerHealth != null)
             {
                 playerControllerHealth.TakeDamage(attackDamage); 
-
             }
         }
 

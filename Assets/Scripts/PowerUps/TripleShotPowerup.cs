@@ -51,7 +51,6 @@ public class TripleShotPowerup : MonoBehaviour
         if (notEnoughTextPrefab != null)
         {
             GameObject text = Instantiate(notEnoughTextPrefab, transform.position, Quaternion.identity);
-            text.GetComponent<TextMeshPro>().text = "Not enough coins!";
             Destroy(text, 2f); // Destruye después de 2 segundos
         }
     }
