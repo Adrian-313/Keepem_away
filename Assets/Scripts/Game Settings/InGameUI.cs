@@ -27,6 +27,7 @@ public class InGameUI : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
             visibleIndicators.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -40,11 +41,13 @@ public class InGameUI : MonoBehaviour
         {
             visibleIndicators.SetActive(false);
             pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             visibleIndicators.SetActive(true);
             pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
