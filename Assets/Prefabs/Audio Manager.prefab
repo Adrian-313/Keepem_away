@@ -350,10 +350,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 1561cc84d10e4eb47bb0711edc77b994, type: 3}
   - name: Powerup
     clips:
-    - {fileID: 8300000, guid: b7f9390d4308ee04087f4f6e3f26ce31, type: 3}
+    - {fileID: 8300000, guid: 76df631c6926d5e4aa4b6a514e212370, type: 3}
   - name: Turret
     clips:
-    - {fileID: 8300000, guid: d1bc727c2a43d0f468ae29adcd34e24d, type: 3}
+    - {fileID: 8300000, guid: 489452e2253d8794f9855d8d438c61c7, type: 3}
   - name: Player Death
     clips:
     - {fileID: 8300000, guid: da6c4a2dfe8e5f1499b467fa3a75425c, type: 3}

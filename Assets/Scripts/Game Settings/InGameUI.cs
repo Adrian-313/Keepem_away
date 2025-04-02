@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +5,47 @@ public class InGameUI : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public GameObject visibleIndicators;
+    public GameObject pauseMenu;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isPaused = false;
+
     void Start()
     {
-        gameOverScreen.gameObject.SetActive(false);
-        visibleIndicators.gameObject.SetActive(true);
+        gameOverScreen.SetActive(false);
+        visibleIndicators.SetActive(true);
+        pauseMenu.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+
+        if (GameManager.Instance.isGameOver)
+        {
+            gameOverScreen.SetActive(true);
+            visibleIndicators.SetActive(false);
+        }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        GameManager.Instance.PauseGame(); // Llama a la función del GameManager
+
+        if (isPaused)
+        {
+            visibleIndicators.SetActive(false);
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            visibleIndicators.SetActive(true);
+            pauseMenu.SetActive(false);
+        }
     }
 
     public void ReloadGame()
@@ -21,25 +55,8 @@ public class InGameUI : MonoBehaviour
 
     public void BackToMenu()
     {
-        //Debug.Log("Volver al menú");
         AudioManager.Instance.PlayMusic("Menu Theme");
         GameManager.Instance.ChangeScene("Carlos");
-    }
-
-    public void GamePaused()
-    {
-        Debug.Log("Pausa");
-        GameManager.Instance.PauseGame();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.Instance.isGameOver)
-        {
-            gameOverScreen.gameObject.SetActive(true);
-            visibleIndicators.gameObject.SetActive(false);
-        }
     }
 
     public void InGameButtonPressed()
