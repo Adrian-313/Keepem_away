@@ -14,11 +14,13 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
     private Animator enemyAnimator;
+    //private Collider attackCollider;
 
     void Start()
     {
         enemyAnimator = GetComponent<Animator>();
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
+        //attackCollider = GetComponent<BoxCollider>();
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -63,14 +65,6 @@ public class Enemy : MonoBehaviour
         {
             enemyAnimator.SetBool("isAttacking", true);
             enemyAnimator.SetBool("isRunning", false);
-            Debug.Log("esta colisiionando");
-
-            PlayerController playerControllerHealth = collision.gameObject.GetComponentInParent<PlayerController>();
-
-            if(playerControllerHealth != null)
-            {
-                playerControllerHealth.TakeDamage(attackDamage); 
-            }
         }
 
         if(collision.gameObject.CompareTag("Bullet"))
@@ -101,6 +95,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            PlayerController playerControllerHealth = other.gameObject.GetComponentInParent<PlayerController>();
+            AudioManager.Instance.PlaySFX("Player Damage");
+
+            if(playerControllerHealth != null)
+            {
+                playerControllerHealth.TakeDamage(attackDamage); 
+            }
+        }
+    }
+
     void DropCoins()
     {
         for (int i = 0; i < coinsToDrop; i++)
@@ -109,12 +117,13 @@ public class Enemy : MonoBehaviour
             
             // Añadir fuerza aleatoria para efecto más interesante
             Vector3 randomForce = new Vector3(
-                Random.Range(-1f, 1f),
-                Random.Range(0.5f, 1f),
-                Random.Range(-1f, 1f)
+                0f,
+                Random.Range(0.5f, 0.8f),
+                0f
             ) * coinDropForce;
             
             coin.GetComponent<Rigidbody>().AddForce(randomForce, ForceMode.Impulse);
+            Destroy(coin.gameObject, 5.0f);
         }
     }
 

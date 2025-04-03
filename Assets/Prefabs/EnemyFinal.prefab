@@ -94,7 +94,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 3.37}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 244332992396866374}
@@ -166,11 +166,11 @@ MonoBehaviour:
   moveSpeed: 1.5
   rotationSpeed: 5
   enemyHealth: 100
-  attackDamage: 10
   coinPrefab: {fileID: 6456978960687450651, guid: 7a4f041b24d71934bb2ce9b52d000840, type: 3}
   coinsToDrop: 2
   coinDropForce: 3
   textDamage: {fileID: 4463776484946446894, guid: 9d182e5a9cdb26a49920b0bf4a71643e, type: 3}
+  attackDamage: 10
 --- !u!195 &2872791621212067278
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -928,6 +928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2738750508928272896}
+  - component: {fileID: 4229672351924036356}
   m_Layer: 0
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
@@ -953,6 +954,27 @@ Transform:
   - {fileID: 4969676515284712399}
   m_Father: {fileID: 381984346256176351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4229672351924036356
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742962937828794914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2816511, y: 0.29462704, z: 0.13815922}
+  m_Center: {x: -0.010664296, y: 0.07927369, z: -0.0059104594}
 --- !u!1 &5965825657835482127
 GameObject:
   m_ObjectHideFlags: 0
