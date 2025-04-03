@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour
                     Vector3 spawnPosition = SpawnBullet.position + SpawnBullet.right * i * 0.5f; // Espaciado
                     bullet.transform.position = spawnPosition;
                     bullet.transform.rotation = SpawnBullet.rotation;
+                    AudioManager.Instance.PlaySFX("Gun");
 
                     if (bullet.TryGetComponent(out Rigidbody bulletRb))
                     {
@@ -146,6 +147,7 @@ public class PlayerController : MonoBehaviour
                 GameObject bullet = BulletPool.Instance.useBullet();
                 bullet.transform.position = SpawnBullet.position;
                 bullet.transform.rotation = SpawnBullet.rotation;
+                AudioManager.Instance.PlaySFX("Gun");
 
                 if (bullet.TryGetComponent(out Rigidbody bulletRb))
                 {
