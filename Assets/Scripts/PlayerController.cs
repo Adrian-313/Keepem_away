@@ -1,6 +1,6 @@
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,12 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootRateTime = 1f;
     [SerializeField] private float shootForce = 1000f;
     [SerializeField] private float shootRate = 0.5f;
-    [SerializeField] private float rotationSpeed = 5f; // 📌 Ajusta la velocidad de rotación
+    [SerializeField] private float rotationSpeed = 5f; //Ajusta la velocidad de rotación
     [SerializeField] private Transform SpawnBullet;
-    [SerializeField] private Transform cameraTransform; // 📌 Asigna la cámara en el Inspector
+    [SerializeField] private Transform cameraTransform; //Asigna la cámara en el Inspector
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    public float dashCooldown = 1f;
 
     public float playerHealth = 100;
     private bool canMove = true;
@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float nextDashTime = 0f;
     private Vector2 moveInput; 
-    private Vector2 lookInput; 
     private Animator playerAnimator;
     public HealthBar healthBarRef;
     private Quaternion lastRotation;
+    public Image dashCooldownImage;
 
     void Start()
     {
@@ -34,6 +34,13 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         healthBarRef.SetMaxHealth(playerHealth);
         Cursor.lockState = CursorLockMode.Locked;
+
+
+        // Inicializa el slider al máximo
+        if (dashCooldownImage != null)
+        {
+            dashCooldownImage.fillAmount = 0; // Inicialmente sin cooldown
+        }
     }
 
     void FixedUpdate()
@@ -55,6 +62,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnimator.SetBool("isShooting", false);
+        }
+
+        if (dashCooldownImage != null)
+        {
+            float remainingCooldown = Mathf.Max(0, nextDashTime - Time.time);
+            dashCooldownImage.fillAmount = remainingCooldown / dashCooldown;
         }
     }
 
@@ -105,18 +118,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   public void Shoot()
-{
-    if (Time.time > shootRateTime)
+    public void Shoot()
     {
-        if (BulletPool.Instance.TripleShotActive)
+        if (Time.time > shootRateTime)
         {
-            // Disparo triple
-            for (int i = -1; i <= 1; i++) // -1, 0, 1 para tres balas
+            if (BulletPool.Instance.TripleShotActive)
             {
+                // Disparo triple
+                for (int i = -1; i <= 1; i++) // -1, 0, 1 para tres balas
+                {
+                    GameObject bullet = BulletPool.Instance.useBullet();
+                    Vector3 spawnPosition = SpawnBullet.position + SpawnBullet.right * i * 0.5f; // Espaciado
+                    bullet.transform.position = spawnPosition;
+                    bullet.transform.rotation = SpawnBullet.rotation;
+
+                    if (bullet.TryGetComponent(out Rigidbody bulletRb))
+                    {
+                        bulletRb.linearVelocity = Vector3.zero;
+                        bulletRb.angularVelocity = Vector3.zero;
+                        bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
+                    }
+                }
+            }
+            else
+            {
+                // Disparo normal
                 GameObject bullet = BulletPool.Instance.useBullet();
-                Vector3 spawnPosition = SpawnBullet.position + SpawnBullet.right * i * 0.5f; // Espaciado
-                bullet.transform.position = spawnPosition;
+                bullet.transform.position = SpawnBullet.position;
                 bullet.transform.rotation = SpawnBullet.rotation;
 
                 if (bullet.TryGetComponent(out Rigidbody bulletRb))
@@ -126,25 +154,10 @@ public class PlayerController : MonoBehaviour
                     bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
                 }
             }
-        }
-        else
-        {
-            // Disparo normal
-            GameObject bullet = BulletPool.Instance.useBullet();
-            bullet.transform.position = SpawnBullet.position;
-            bullet.transform.rotation = SpawnBullet.rotation;
 
-            if (bullet.TryGetComponent(out Rigidbody bulletRb))
-            {
-                bulletRb.linearVelocity = Vector3.zero;
-                bulletRb.angularVelocity = Vector3.zero;
-                bulletRb.AddForce(SpawnBullet.forward * shootForce, ForceMode.Impulse);
-            }
+            shootRateTime = Time.time + shootRate;
         }
-
-        shootRateTime = Time.time + shootRate;
     }
-}
 
     public void OnDash(InputAction.CallbackContext context)
     {

@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class ActivePowerup : MonoBehaviour
 {
-    public Image[] powerupImages; // Array de imágenes para los diferentes powerups
-    private bool isActive = false; // Indica si un powerup está activo
-    private float powerupDuration = 7f; // Duración del powerup en segundos
+    public Image[] powerupImages; // Array de imï¿½genes para los diferentes powerups
+    private bool isActive = false; // Indica si un powerup estï¿½ activo
+    private float powerupDuration = 7f; // Duraciï¿½n del powerup en segundos
     private float powerupTimer = 0f; // Temporizador del powerup
-    private int activePowerupIndex = -1; // Índice del powerup activo
+    private int activePowerupIndex = -1; // ï¿½ndice del powerup activo
 
     void Start()
     {
-        // Asegurar que todas las imágenes estén desactivadas al inicio
+        // Asegurar que todas las imï¿½genes estï¿½n desactivadas al inicio
         foreach (Image img in powerupImages)
         {
             img.gameObject.SetActive(false);
@@ -26,7 +26,7 @@ public class ActivePowerup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K)) ActivatePowerup(2);
         if (Input.GetKeyDown(KeyCode.L)) ActivatePowerup(3);
 
-        // Si un powerup está activo, aplicar el efecto y gestionar el temporizador
+        // Si un powerup estï¿½ activo, aplicar el efecto y gestionar el temporizador
         if (isActive)
         {
             ApplyPowerupEffect();
@@ -43,7 +43,7 @@ public class ActivePowerup : MonoBehaviour
             // Cuando el tiempo se acabe, desactivar el powerup
             isActive = false;
             powerupImages[activePowerupIndex].gameObject.SetActive(false);
-            activePowerupIndex = -1; // Reiniciar el índice
+            activePowerupIndex = -1; // Reiniciar el ï¿½ndice
         }
         else
         {
@@ -63,10 +63,10 @@ public class ActivePowerup : MonoBehaviour
         }
         else
         {
-            // Asegurar que el índice es válido
+            // Asegurar que el ï¿½ndice es vï¿½lido
             if (powerupIndex < 0 || powerupIndex >= powerupImages.Length)
             {
-                Debug.LogError("Índice de powerup fuera de rango");
+                Debug.LogError("ï¿½ndice de powerup fuera de rango");
                 return;
             }
 
@@ -76,7 +76,7 @@ public class ActivePowerup : MonoBehaviour
             activePowerupIndex = powerupIndex;
             powerupImages[powerupIndex].gameObject.SetActive(true);
 
-            // Restablecer la opacidad al máximo
+            // Restablecer la opacidad al mï¿½ximo
             Color color = powerupImages[powerupIndex].color;
             color.a = 1f;
             powerupImages[powerupIndex].color = color;

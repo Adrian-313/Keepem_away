@@ -5,22 +5,21 @@ public class DashCooldown : MonoBehaviour
 {
     public Image imageCooldown;
     private bool isCooldown = false;
-    private float cooldownTime = 5f;
     private float cooldownTimer = 0f;
+
+    private PlayerController playerController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         imageCooldown.fillAmount = 0f;
+        playerController = FindAnyObjectByType<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            UseDash();
-        }
+        UseDash();
 
 
         if(isCooldown)
@@ -31,7 +30,7 @@ public class DashCooldown : MonoBehaviour
 
     void ApplyCooldown()
     {
-        cooldownTimer -= Time.deltaTime;
+        playerController.dashCooldown -= Time.deltaTime;
 
         if(cooldownTimer < 0f)
         {
@@ -41,7 +40,7 @@ public class DashCooldown : MonoBehaviour
 
         else
         {
-            imageCooldown.fillAmount = cooldownTimer / cooldownTime;
+            imageCooldown.fillAmount = cooldownTimer / playerController.dashCooldown;
         }
     }
 
@@ -55,7 +54,7 @@ public class DashCooldown : MonoBehaviour
         else
         {
             isCooldown = true;
-            cooldownTimer = cooldownTime;
+            cooldownTimer = playerController.dashCooldown;
         }
     }
 }
