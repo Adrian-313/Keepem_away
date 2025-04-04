@@ -3,53 +3,53 @@ using UnityEngine;
 public class ExplosiveBullet : MonoBehaviour
 {
     private int damage;
-    private float radius;
+    private float explosionRadius;
     private GameObject explosionEffect;
     private float speed;
-    private Rigidbody rb;
+    private Transform target;
 
-    public void SetParameters(int bulletDamage, float explosionRadius, GameObject effect, float bulletSpeed)
+    public void SetParameters(int dmg, float radius, GameObject effect, float bulletSpeed)
     {
-        damage = bulletDamage;
-        radius = explosionRadius;
+        damage = dmg;
+        explosionRadius = radius;
         explosionEffect = effect;
         speed = bulletSpeed;
-
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
-
-        rb.linearVelocity = transform.forward * speed;
     }
 
-    void OnEnable()
+    public void SetTarget(Transform enemyTarget)
     {
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
+        target = enemyTarget;
     }
 
-    void OnDisable()
+    void Update()
     {
-        if (rb != null)
-            rb.linearVelocity = Vector3.zero;
-    }
+        if (target == null)
+        {
+            gameObject.SetActive(false); // Si el objetivo muere o desaparece
+            return;
+        }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Explode();
-        gameObject.SetActive(false); // Devuelve al pool
+        // Moverse hacia el objetivo
+        Vector3 dir = (target.position - transform.position).normalized;
+        transform.position += dir * speed * Time.deltaTime;
+
+        // Si está cerca del objetivo, explota
+        float distance = Vector3.Distance(transform.position, target.position);
+        if (distance < 0.5f)
+        {
+            Explode();
+        }
     }
 
     void Explode()
     {
-        // Efecto visual
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // Daño en área
-        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
-        foreach (Collider hit in hits)
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider hit in hitColliders)
         {
             if (hit.CompareTag("Enemy"))
             {
@@ -60,5 +60,12 @@ public class ExplosiveBullet : MonoBehaviour
                 }
             }
         }
+
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        target = null; // Limpiar referencias al desactivarse
     }
 }

@@ -11,11 +11,11 @@ public class TurretShot : MonoBehaviour
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float detectionRange = 15f;
     [SerializeField] private float bulletSpeed = 20f;
+    [SerializeField] private float rotationSpeed = 5f;
 
     private float nextFireTime;
     private Transform currentTarget;
     private Turret turret;
-
 
     private void Start()
     {
@@ -25,6 +25,7 @@ public class TurretShot : MonoBehaviour
     void Update()
     {
         FindNearestEnemy();
+        SmoothRotate();
 
         if (currentTarget != null && Time.time >= nextFireTime)
         {
@@ -55,17 +56,34 @@ public class TurretShot : MonoBehaviour
         currentTarget = nearestEnemy;
     }
 
-    void Shoot()
+
+    void SmoothRotate()
     {
-        if (currentTarget != null && turret.turretMesh.enabled == true)
+        if (currentTarget != null)
         {
-            // Rotación hacia el enemigo
             Vector3 lookPos = currentTarget.position - transform.position;
             lookPos.y = 0;
-            transform.rotation = Quaternion.LookRotation(lookPos);
+            
+            if (lookPos != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    rotationSpeed * Time.deltaTime
+                );
+            }
+        }
+    }
 
+    void Shoot()
+    {
+        if (currentTarget != null && turret.turretMesh.enabled)
+        {
+            // Eliminada la rotación instantánea de aquí
+            
             // Obtener bala del pool
-            GameObject bullet = BulletPool.Instance.useBullet();
+            GameObject bullet = ExplosionPooling.Instance.useBullet();
             bullet.transform.position = firePoint.position;
             bullet.transform.rotation = firePoint.rotation;
 
@@ -77,6 +95,7 @@ public class TurretShot : MonoBehaviour
             }
 
             explosiveBullet.SetParameters(explosionDamage, explosionRadius, explosionEffect, bulletSpeed);
+            explosiveBullet.SetTarget(currentTarget);
         }
     }
 
