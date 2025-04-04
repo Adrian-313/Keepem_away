@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   health: 100
-  cost: 1
+  cost: 20
   turretMesh: {fileID: 1610357899}
 --- !u!65 &111189499
 BoxCollider:
@@ -2834,7 +2834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 1
+  cost: 10
   collectEffect: {fileID: 725748389856807712, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   powerupBar: {fileID: 1283972250}
@@ -3369,7 +3369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 1
+  cost: 10
   collectEffect: {fileID: 725748389856807712, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   powerupBar: {fileID: 1283972250}
@@ -11244,7 +11244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 1
+  cost: 10
   collectEffect: {fileID: 725748389856807712, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   powerupBar: {fileID: 1283972250}
@@ -15408,7 +15408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   health: 100
-  cost: 1
+  cost: 20
   turretMesh: {fileID: 1610357899}
 --- !u!65 &1212896700
 BoxCollider:
@@ -17304,7 +17304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 1
+  cost: 10
   collectEffect: {fileID: 725748389856807712, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   powerupBar: {fileID: 1283972250}
@@ -20644,7 +20644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   health: 100
-  cost: 1
+  cost: 20
   turretMesh: {fileID: 1610357899}
 --- !u!65 &1640348008
 BoxCollider:
@@ -22708,7 +22708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 1
+  cost: 10
   collectEffect: {fileID: 725748389856807712, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   powerupBar: {fileID: 1283972250}
@@ -26128,6 +26128,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 703423749129435471, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}
+      propertyPath: dashSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 703423749129435471, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}
       propertyPath: dashCooldown
       value: 5
       objectReference: {fileID: 0}
@@ -26256,7 +26260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   health: 100
-  cost: 1
+  cost: 20
   turretMesh: {fileID: 1610357899}
 --- !u!65 &3469287837760051891
 BoxCollider:
