@@ -19,7 +19,7 @@ public class InGameUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !optionsPanel.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionsPanel.activeSelf && !gameOverScreen.activeSelf)
         {
             TogglePause();
         }

@@ -5,6 +5,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private int damage = 100;
     [SerializeField] private float health = 100f;
     [SerializeField] private int cost = 1;
+    [SerializeField] private float turretCooldown;
+    [SerializeField] private float turretDuration;
     public MeshRenderer turretMesh;
 
     private bool canDeploy = true;
@@ -28,13 +30,13 @@ public class Turret : MonoBehaviour
         turretMesh.enabled = true;
         GameManager.Instance.SubtractCoins(cost);
         canDeploy = false;
-        Invoke(nameof(DisableTurret), 20f);
+        Invoke(nameof(DisableTurret), turretDuration);
     }
 
     private void DisableTurret()
     {
         turretMesh.enabled = false;
-        Invoke(nameof(EnableTurretAgain), 30f);
+        Invoke(nameof(EnableTurretAgain), turretCooldown);
     }
 
     private void EnableTurretAgain()
