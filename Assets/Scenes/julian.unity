@@ -9026,7 +9026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolSize: 20
-  bulletPrefab: {fileID: 7869110697105421910, guid: 54b946d3b19ee1c4cabfaec234b7db16, type: 3}
+  bulletPrefab: {fileID: 5841916545210235259, guid: 0727454d4b877c54bbd0569265586429, type: 3}
 --- !u!4 &680870385
 Transform:
   m_ObjectHideFlags: 0
@@ -24013,7 +24013,7 @@ MonoBehaviour:
   - {fileID: 503712350}
   - {fileID: 1169956209}
   initialSpawnRate: 5
-  minSpawnRate: 1
+  minSpawnRate: 0.7
   spawnAcceleration: 0.9
 --- !u!1001 &1970412753
 PrefabInstance:
@@ -26113,7 +26113,7 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 2115140031559629810, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2036502289669003046, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}

@@ -982,14 +982,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c4058ffcb6a4a45bf3406b0ff4cac5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 2
   rotationSpeed: 5
   enemyHealth: 100
   coinPrefab: {fileID: 6456978960687450651, guid: 7a4f041b24d71934bb2ce9b52d000840, type: 3}
   coinsToDrop: 2
   coinDropForce: 3
   textDamage: {fileID: 4463776484946446894, guid: 9d182e5a9cdb26a49920b0bf4a71643e, type: 3}
-  attackDamage: 10
+  attackDamage: 20
 --- !u!195 &2523823066353027950
 NavMeshAgent:
   m_ObjectHideFlags: 0
