@@ -3,9 +3,8 @@ using TMPro;
 
 public class CoinCount : MonoBehaviour
 {
-    public int coins = 0;
+    private int coins;
     public TextMeshProUGUI coinText; // Referencia al texto de la UI
-    public int coinCost = 20; // Cantidad de monedas a descontar
 
     void Start()
     {
@@ -14,22 +13,8 @@ public class CoinCount : MonoBehaviour
 
     public void AddCoin()
     {
-        coins++;
+        coins = GameManager.Instance.playerCoins;
         UpdateCoinUI();
-    }
-
-    public void SpendCoins()
-    {
-        if (coins >= coinCost)
-        {
-            coins -= coinCost;
-            UpdateCoinUI();
-            Debug.Log("Has gastado " + coinCost + " monedas.");
-        }
-        else
-        {
-            Debug.Log("No tienes suficientes monedas.");
-        }
     }
 
     void UpdateCoinUI()
@@ -39,13 +24,6 @@ public class CoinCount : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            AddCoin();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            SpendCoins();
-        }
+        AddCoin();
     }
 }

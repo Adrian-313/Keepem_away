@@ -8,7 +8,7 @@ public class PlayerDash : MonoBehaviour
     [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private float dashCooldown = 5f;
     
     private Rigidbody rb;
     private PlayerController playerController;

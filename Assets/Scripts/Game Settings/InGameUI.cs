@@ -6,6 +6,7 @@ public class InGameUI : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject visibleIndicators;
     public GameObject pauseMenu;
+    public GameObject optionsPanel;
 
     private bool isPaused = false;
 
@@ -18,7 +19,7 @@ public class InGameUI : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !optionsPanel.activeSelf && !gameOverScreen.activeSelf)
         {
             TogglePause();
         }
@@ -27,6 +28,7 @@ public class InGameUI : MonoBehaviour
         {
             gameOverScreen.SetActive(true);
             visibleIndicators.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 
@@ -40,11 +42,13 @@ public class InGameUI : MonoBehaviour
         {
             visibleIndicators.SetActive(false);
             pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             visibleIndicators.SetActive(true);
             pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -57,6 +61,7 @@ public class InGameUI : MonoBehaviour
     {
         AudioManager.Instance.PlayMusic("Menu Theme");
         GameManager.Instance.ChangeScene("Carlos");
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void InGameButtonPressed()

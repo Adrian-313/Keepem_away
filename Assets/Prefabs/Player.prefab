@@ -2232,6 +2232,7 @@ GameObject:
   - component: {fileID: 2617113919504849387}
   - component: {fileID: 703423749129435471}
   - component: {fileID: 8019876257313198260}
+  - component: {fileID: 2115140031559629810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2434,7 +2435,6 @@ MonoBehaviour:
   dashSpeed: 10
   dashDuration: 1.2
   dashCooldown: 1
-  coinScore: 500
   playerHealth: 100
 --- !u!114 &8019876257313198260
 MonoBehaviour:
@@ -2453,6 +2453,20 @@ MonoBehaviour:
   dashCooldown: 1
   dashTrail: {fileID: 0}
   dashParticles: {fileID: 0}
+--- !u!114 &2115140031559629810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644643934749936692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213a804e3e21f0044875b350e6f99840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  healthBar: {fileID: 0}
 --- !u!1 &8703587831484912448
 GameObject:
   m_ObjectHideFlags: 0

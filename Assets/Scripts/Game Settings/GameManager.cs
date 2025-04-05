@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -6,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    public event Action OnSceneReloaded;
 
     public bool isPaused;
     public bool isGameOver;
@@ -54,18 +51,20 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        Time.timeScale = 0;
     }
 
     public void ReloadScene()
     {
         isGameOver = false;
-        OnSceneReloaded.Invoke();
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeScene(string nameScene)
     {
         isGameOver = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene(nameScene);
     }
 

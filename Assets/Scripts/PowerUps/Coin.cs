@@ -5,8 +5,8 @@ public class Coin : MonoBehaviour
     [Header("Configuración")]
     [SerializeField] private int coinValue = 1;
     [SerializeField] private float rotationSpeed = 100f;
-    [SerializeField] private float attractDistance = 3f;
-    [SerializeField] private float attractSpeed = 5f;
+    [SerializeField] private float attractDistance = 1000f;
+    [SerializeField] private float attractSpeed = 10f;
     [SerializeField] private float timeBeforeAttract = 0.5f;
 
     [Header("Componentes")]
@@ -39,7 +39,7 @@ public class Coin : MonoBehaviour
         if (canAttract && player != null)
         {
             float distance = Vector3.Distance(transform.position, player.position);
-            if (distance < attractDistance)
+            if (distance > attractDistance)
             {
                 // Cambiamos a física kinemática durante la atracción
                 rb.isKinematic = true;

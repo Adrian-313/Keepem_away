@@ -4,28 +4,43 @@ public class Turret : MonoBehaviour
 {
     [SerializeField] private int damage = 100;
     [SerializeField] private float health = 100f;
-    [SerializeField] private MeshRenderer turretMesh;
-    PlayerController playerRef;
+    [SerializeField] private int cost = 1;
+    [SerializeField] private float turretCooldown;
+    [SerializeField] private float turretDuration;
+    public MeshRenderer turretMesh;
+
+    private bool canDeploy = true;
 
     void Start()
     {
         turretMesh = GetComponent<MeshRenderer>();
         turretMesh.enabled = false;
-        playerRef = FindAnyObjectByType<PlayerController>();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player") && playerRef.coinScore >= 100f && turretMesh.enabled == false)
+        if (collision.gameObject.CompareTag("Player") && GameManager.Instance.playerCoins >= cost && canDeploy)
         {
             DeployTurret();
-            Debug.Log(playerRef.coinScore);
         }
     }
 
     public void DeployTurret()
-    {
+    {   
         turretMesh.enabled = true;
-        playerRef.coinScore -= 100f;
+        GameManager.Instance.SubtractCoins(cost);
+        canDeploy = false;
+        Invoke(nameof(DisableTurret), turretDuration);
+    }
+
+    private void DisableTurret()
+    {
+        turretMesh.enabled = false;
+        Invoke(nameof(EnableTurretAgain), turretCooldown);
+    }
+
+    private void EnableTurretAgain()
+    {
+        canDeploy = true;
     }
 }

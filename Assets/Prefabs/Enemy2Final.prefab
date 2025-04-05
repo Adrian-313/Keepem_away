@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 2618227127175359225}
   m_Layer: 0
   m_Name: Enemy2Final
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -985,11 +985,11 @@ MonoBehaviour:
   moveSpeed: 1.5
   rotationSpeed: 5
   enemyHealth: 100
-  attackDamage: 10
   coinPrefab: {fileID: 6456978960687450651, guid: 7a4f041b24d71934bb2ce9b52d000840, type: 3}
   coinsToDrop: 2
   coinDropForce: 3
   textDamage: {fileID: 4463776484946446894, guid: 9d182e5a9cdb26a49920b0bf4a71643e, type: 3}
+  attackDamage: 10
 --- !u!195 &2523823066353027950
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1075,6 +1075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3352020752312067962}
+  - component: {fileID: 8175424538595762909}
   m_Layer: 0
   m_Name: mixamorig:RightHand
   m_TagString: Untagged
@@ -1098,6 +1099,27 @@ Transform:
   - {fileID: 7815593487615614365}
   m_Father: {fileID: 2449912072378172459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8175424538595762909
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878342847441154693}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.48122543, y: 0.4418611, z: 0.2605145}
+  m_Center: {x: -0.03019545, y: 0.033321626, z: 0.0033939213}
 --- !u!1 &7099526695233490419
 GameObject:
   m_ObjectHideFlags: 0
