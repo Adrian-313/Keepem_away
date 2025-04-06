@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public bool isPaused;
     public bool isGameOver;
     public int playerScore = 0;
+
+    public int highScore { get; private set; }
     public int playerCoins { get; private set; }
 
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         isGameOver = false;
+        LoadHighScore();
     }
 
     public void PauseGame()
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
         Time.timeScale = 1;
+        playerScore = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -73,7 +77,24 @@ public class GameManager : MonoBehaviour
         playerScore += points;
         Debug.Log("Puntos actuales: " + playerScore);
         // Aquí podrías también actualizar la UI del score
+        if (playerScore > highScore)
+        {
+            highScore = playerScore;
+            SaveHighScore();
+        }
     }
+
+    private void SaveHighScore()
+    {
+        PlayerPrefs.SetInt("HighScore", highScore);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadHighScore()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
     public void AddCoins(int amount)
     {
         playerCoins += amount;
@@ -85,5 +106,4 @@ public class GameManager : MonoBehaviour
         playerCoins -= amount;
        
     }
-
 }
