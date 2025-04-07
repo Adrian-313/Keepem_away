@@ -23,10 +23,11 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float nextDashTime = 0f;
     private Vector2 moveInput; 
-    private Animator playerAnimator;
+    public Animator playerAnimator;
     public HealthBar healthBarRef;
     private Quaternion lastRotation;
     public Image dashCooldownImage;
+    public GameObject dash;
 
     void Start()
     {
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (dashCooldownImage != null)
         {
             dashCooldownImage.fillAmount = 0; // Inicialmente sin cooldown
+            dash.SetActive(false);
         }
     }
 
@@ -54,20 +56,33 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         RotateWithCamera(); //Rotación más fluida
+        
         if (isFiring)
         {
             Shoot();
             playerAnimator.SetBool("isShooting", true);
+            playerAnimator.SetBool("isRunning", true);
         }
         else
         {
             playerAnimator.SetBool("isShooting", false);
+            playerAnimator.SetBool("isRunning", false);
         }
 
         if (dashCooldownImage != null)
         {
             float remainingCooldown = Mathf.Max(0, nextDashTime - Time.time);
             dashCooldownImage.fillAmount = remainingCooldown / dashCooldown;
+
+            //Mostrar solo si el jugador se está moviendo
+            if (moveInput.magnitude > 0.1f)
+            {
+                dash.SetActive(true);
+            }
+            else
+            {
+                dash.SetActive(false);
+            }
         }
     }
 
@@ -163,7 +178,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= nextDashTime)
+        if (context.performed && Time.time >= nextDashTime && moveInput.magnitude > 0.1f)
         {
             StartCoroutine(Dash());
         }
