@@ -101,11 +101,20 @@ public class Enemy : MonoBehaviour
         {
             PlayerController playerControllerHealth = other.gameObject.GetComponentInParent<PlayerController>();
             AudioManager.Instance.PlaySFX("Player Damage");
-
+            playerControllerHealth.playerAnimator.SetBool("gotHit", true);
             if(playerControllerHealth != null)
             {
-                playerControllerHealth.TakeDamage(attackDamage); 
+                playerControllerHealth.TakeDamage(attackDamage);
             }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            PlayerController playerControllerHealth = other.gameObject.GetComponentInParent<PlayerController>();
+            playerControllerHealth.playerAnimator.SetBool("gotHit", false);
         }
     }
 
