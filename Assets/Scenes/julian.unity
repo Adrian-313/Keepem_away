@@ -30047,6 +30047,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 703423749129435471, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: 8798524311696407496}
+    - target: {fileID: 703423749129435471, guid: 5df990e6129b2b5499b4bfe361957636, type: 3}
       propertyPath: dashSpeed
       value: 5
       objectReference: {fileID: 0}
