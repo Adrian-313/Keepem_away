@@ -49,9 +49,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: cab6eeb8a745d2a4385f775f029be341, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cab6eeb8a745d2a4385f775f029be341, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c4ae9ee1dafd90c41bd7e8f4d8023c0c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: cab6eeb8a745d2a4385f775f029be341, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b0cb42f31da10de4dbab80eed911a743, type: 2}
     - target: {fileID: 919132149155446097, guid: cab6eeb8a745d2a4385f775f029be341, type: 3}
       propertyPath: m_Name
       value: EggBerto

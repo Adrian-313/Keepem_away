@@ -49,9 +49,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 4d1c819c58b236542b96253f6b1a8281, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4d1c819c58b236542b96253f6b1a8281, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: fa6c45465cde56c4495f6d9109c80326, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 4d1c819c58b236542b96253f6b1a8281, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 174129d8fd011fd49b3fba08c18875ca, type: 2}
     - target: {fileID: 919132149155446097, guid: 4d1c819c58b236542b96253f6b1a8281, type: 3}
       propertyPath: m_Name
       value: Plant_Pine_01A
