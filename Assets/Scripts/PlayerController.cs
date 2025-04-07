@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion lastRotation;
     public Image dashCooldownImage;
     public GameObject dash;
+    public GameObject gunGameObject;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         healthBarRef.SetMaxHealth(playerHealth);
         Cursor.lockState = CursorLockMode.Locked;
-
+        gunGameObject.SetActive(false);
 
         // Inicializa el slider al máximo
         if (dashCooldownImage != null)
@@ -59,12 +60,14 @@ public class PlayerController : MonoBehaviour
         
         if (isFiring)
         {
+            gunGameObject.SetActive(true);
             Shoot();
             playerAnimator.SetBool("isShooting", true);
             playerAnimator.SetBool("isRunning", true);
         }
         else
         {
+            gunGameObject.SetActive(false);
             playerAnimator.SetBool("isShooting", false);
             playerAnimator.SetBool("isRunning", false);
         }
