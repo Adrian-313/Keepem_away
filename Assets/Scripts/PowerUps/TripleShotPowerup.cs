@@ -32,7 +32,7 @@ public class TripleShotPowerup : MonoBehaviour
 
         if(textCost != null)
         {
-            instantiateTextCost = Instantiate(textCost, transform.position, Quaternion.identity);
+            instantiateTextCost = Instantiate(textCost, transform.position + Vector3.up, Quaternion.identity);
         }
         
     // Mostrar efecto si el objeto está disponible
@@ -122,7 +122,7 @@ public class TripleShotPowerup : MonoBehaviour
         {
             idleEffectInstance = Instantiate(collectEffect, transform.position, Quaternion.identity, transform);
             idleEffectInstance.Play();
-            instantiateTextCost = Instantiate(textCost, transform.position , Quaternion.identity);
+            instantiateTextCost = Instantiate(textCost, transform.position + Vector3.up, Quaternion.identity);
         }
         
     }
@@ -150,7 +150,7 @@ public class TripleShotPowerup : MonoBehaviour
     {
         if (notEnoughTextPrefab != null)
         {
-            GameObject text = Instantiate(notEnoughTextPrefab, transform.position + Vector3.up , Quaternion.identity);
+            GameObject text = Instantiate(notEnoughTextPrefab, transform.position + Vector3.up + Vector3.up , Quaternion.identity);
             Destroy(text, 2f);
         }
     }

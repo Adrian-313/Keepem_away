@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     private Animator enemyAnimator;
     public ParticleSystem attackParticle;
     public ParticleSystem instantiateAttackParticle;
+    public ParticleSystem chickenFeathers;
+    public ParticleSystem instantiateChickenFeathers;
     //private Collider attackCollider;
 
     void Start()
@@ -46,11 +48,12 @@ public class Enemy : MonoBehaviour
     //----------Reducir vida de acuerdo al daño recibido por la bala----------//
     public void TakeDamage(float damage)
     {
-        FloatingText floatingText = Instantiate(textDamage,transform.position,Quaternion.identity).GetComponent<FloatingText>();
+        FloatingText floatingText = Instantiate(textDamage,transform.position + Vector3.up, Quaternion.identity).GetComponent<FloatingText>();
         _ = floatingText.SendText(damage.ToString(), Color.white);
         enemyHealth -= damage;
         if(enemyHealth <= 0){
             Die();
+            Destroy(instantiateChickenFeathers);
         }
     }
 
@@ -60,6 +63,7 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.AddScore(10);
         DropCoins(); // Llamar a la función de soltar monedas
         gameObject.SetActive(false);
+        instantiateChickenFeathers = Instantiate(chickenFeathers, transform.position, Quaternion.identity);
     }
 
     //----------Hacer daño año al jugador----------//
