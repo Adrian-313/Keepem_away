@@ -34,7 +34,10 @@ incontables hordas de enemigos tratando de llevárselo.<br>
 <!-- Capturas y Videos -->
 # :camera: Capturas y Videos 
  <div align="center" id="capture">
-  <img src="gameplay1.png" alt="Fire" width="1920" />
+  <img src="gameplay1.png" alt="gameplay" width="1920" />
+  <img src="gameplay.png" alt="gameplay" width="1920" />
+  <img src="menu.png" alt="game menu" width="1920" />
+  <img src="play.png" alt="how to play" width="1920" />
 </div>
 
 
