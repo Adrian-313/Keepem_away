@@ -65,6 +65,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("¡Jugador detectado!");
+            AudioManager.Instance.PlaySFX("Coin");
             CollectCoin();
         }
     }

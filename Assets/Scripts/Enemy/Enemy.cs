@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        AudioManager.Instance.PlaySFX("Enemy Death");
         GameManager.Instance.AddScore(10);
         DropCoins(); // Llamar a la función de soltar monedas
         gameObject.SetActive(false);

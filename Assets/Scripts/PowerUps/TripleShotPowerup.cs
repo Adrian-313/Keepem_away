@@ -53,6 +53,7 @@ public class TripleShotPowerup : MonoBehaviour
         {
             if (GameManager.Instance.playerCoins >= cost)
             {
+                AudioManager.Instance.PlaySFX("Powerup");
                 GameManager.Instance.SubtractCoins(cost);
                 StartCoroutine(PowerupSequence());
             }

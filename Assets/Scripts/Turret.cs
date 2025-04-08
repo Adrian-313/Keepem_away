@@ -31,6 +31,7 @@ public class Turret : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && GameManager.Instance.playerCoins >= cost && canDeploy)
         {
+            AudioManager.Instance.PlaySFX("Turret");
             DeployTurret();
         }
     }

@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         canMove = false;
         playerAnimator.SetBool("IsDashing", true);
+        AudioManager.Instance.PlaySFX("Dash");
         float startTime = Time.time;
 
         while (Time.time < startTime + dashDuration)
