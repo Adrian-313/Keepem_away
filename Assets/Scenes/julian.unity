@@ -1924,8 +1924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   health: 100
-  cost: 2
-  turretCooldown: 5
+  cost: 20
+  turretCooldown: 45
   turretDuration: 15
   floatingTextCannon: {fileID: 4463776484946446894, guid: abc26c011b027e1408adb252479f7c27, type: 3}
   text: {fileID: 0}
@@ -3580,7 +3580,7 @@ Transform:
   m_GameObject: {fileID: 221414943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: -40.1}
+  m_LocalPosition: {x: -23.23, y: 1.3, z: -4.29}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -12464,7 +12464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerupDuration: 10
   respawnTime: 10
-  cost: 2
+  cost: 10
   notEnoughTextPrefab: {fileID: 4463776484946446894, guid: d8b3a5af82792f04ca627090014b5d4a, type: 3}
   collectEffect: {fileID: 1652143759095011288, guid: e2c1ac940434a5242b54d72b66654687, type: 3}
   idleEffectInstance: {fileID: 0}
@@ -17220,7 +17220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   health: 100
-  cost: 2
+  cost: 20
   turretCooldown: 45
   turretDuration: 15
   floatingTextCannon: {fileID: 4463776484946446894, guid: abc26c011b027e1408adb252479f7c27, type: 3}
@@ -22772,7 +22772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   health: 100
-  cost: 2
+  cost: 20
   turretCooldown: 45
   turretDuration: 15
   floatingTextCannon: {fileID: 4463776484946446894, guid: abc26c011b027e1408adb252479f7c27, type: 3}
@@ -30975,7 +30975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   health: 100
-  cost: 2
+  cost: 20
   turretCooldown: 45
   turretDuration: 15
   floatingTextCannon: {fileID: 4463776484946446894, guid: abc26c011b027e1408adb252479f7c27, type: 3}
