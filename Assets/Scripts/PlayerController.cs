@@ -23,10 +23,12 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private float nextDashTime = 0f;
     private Vector2 moveInput; 
-    private Animator playerAnimator;
+    public Animator playerAnimator;
     public HealthBar healthBarRef;
     private Quaternion lastRotation;
     public Image dashCooldownImage;
+    public GameObject dash;
+    public GameObject gunGameObject;
 
     void Start()
     {
@@ -34,12 +36,13 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         healthBarRef.SetMaxHealth(playerHealth);
         Cursor.lockState = CursorLockMode.Locked;
-
+        gunGameObject.SetActive(false);
 
         // Inicializa el slider al máximo
         if (dashCooldownImage != null)
         {
             dashCooldownImage.fillAmount = 0; // Inicialmente sin cooldown
+            dash.SetActive(false);
         }
     }
 
@@ -54,20 +57,35 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         RotateWithCamera(); //Rotación más fluida
+        
         if (isFiring)
         {
+            gunGameObject.SetActive(true);
             Shoot();
             playerAnimator.SetBool("isShooting", true);
+            playerAnimator.SetBool("isRunning", true);
         }
         else
         {
+            gunGameObject.SetActive(false);
             playerAnimator.SetBool("isShooting", false);
+            playerAnimator.SetBool("isRunning", false);
         }
 
         if (dashCooldownImage != null)
         {
             float remainingCooldown = Mathf.Max(0, nextDashTime - Time.time);
             dashCooldownImage.fillAmount = remainingCooldown / dashCooldown;
+
+            //Mostrar solo si el jugador se está moviendo
+            if (moveInput.magnitude > 0.1f)
+            {
+                dash.SetActive(true);
+            }
+            else
+            {
+                dash.SetActive(false);
+            }
         }
     }
 
@@ -163,7 +181,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= nextDashTime)
+        if (context.performed && Time.time >= nextDashTime && moveInput.magnitude > 0.1f)
         {
             StartCoroutine(Dash());
         }
@@ -174,6 +192,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         canMove = false;
         playerAnimator.SetBool("IsDashing", true);
+        AudioManager.Instance.PlaySFX("Dash");
         float startTime = Time.time;
 
         while (Time.time < startTime + dashDuration)

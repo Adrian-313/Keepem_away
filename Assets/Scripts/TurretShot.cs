@@ -96,6 +96,7 @@ public class TurretShot : MonoBehaviour
 
             explosiveBullet.SetParameters(explosionDamage, explosionRadius, explosionEffect, bulletSpeed);
             explosiveBullet.SetTarget(currentTarget);
+            AudioManager.Instance.PlaySFX("Turret Fire");
         }
     }
 

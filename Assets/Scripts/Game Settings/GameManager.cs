@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         Time.timeScale = 1;
         playerScore = 0;
+        playerCoins = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = false;
         Time.timeScale = 1;
+        playerScore = 0;
+        playerCoins = 0;
         SceneManager.LoadScene(nameScene);
     }
 
@@ -104,6 +107,5 @@ public class GameManager : MonoBehaviour
     public void SubtractCoins(int amount)
     {
         playerCoins -= amount;
-       
     }
 }
