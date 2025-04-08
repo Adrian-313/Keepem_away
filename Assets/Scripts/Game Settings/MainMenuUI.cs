@@ -14,4 +14,9 @@ public class MainMenuUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("Button Pressed");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
