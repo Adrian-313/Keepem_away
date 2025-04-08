@@ -772,8 +772,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1111732184}
   m_HandleRect: {fileID: 1111732183}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.19999999
+  m_Value: 0.9996978
+  m_Size: 0.08336992
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1219,8 +1219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 800}
-  m_SizeDelta: {x: 1100, y: 300}
+  m_AnchoredPosition: {x: 0, y: -0.048095703}
+  m_SizeDelta: {x: 1100, y: 3422.491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205690408
 MonoBehaviour:
@@ -1242,11 +1242,33 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "YUPI STUDIO\n\nSebasti\xE1n Torres - Project Manager & Lead Programmer\nAdrian
-    Ord\xF3\xF1ez - Lead Gameplay Programmer\nIsabela G\xF3mez - 2D and 3D Artist,
-    UI/UX Designer, Shaders & Post-Production\nJuli\xE1n D\xEDaz - Game and Level
-    Designer & Generalist Programmer\nCarlos Henao - UI/UX Programmer, UI/UX Designer,
-    Audio Programmer & Post-Production"
+  m_text: "YUPI STUDIO\r\n\r\n\r\n\nSebasti\xE1n Torres - Project Manager & Lead
+    Programmer\r\n\r\n\nAdrian Ord\xF3\xF1ez - Lead Gameplay Programmer\r\n\r\n\nIsabela
+    G\xF3mez - 2D and 3D Artist, UI/UX Designer, Shaders & Post-Production\r\n\r\n\nJuli\xE1n
+    D\xEDaz - Game and Level Designer & Generalist Programmer\r\n\r\n\nCarlos Henao
+    - UI/UX Programmer, UI/UX Designer, Audio Programmer & Post-Production\r\n\r\n\r\n\r\n\nEXTERNAL
+    ASSETS\r\n\r\n\r\nLevel Design\r\n\r\nGameDev Starter Kit - Farming [Free Edition]
+    by AssetHunts!, Link: https://assetstore.unity.com/packages/3d/environments/gamedev-starter-kit-farming-free-edition-243035
+    \r\n\r\nStylish Cannon Pack by StreakByte, Link: https://assetstore.unity.com/packages/3d/props/weapons/stylish-cannon-pack-174145
+    \r\n\r\n\nMusic\r\n\r\nFunny Comedy Quirky Cartoon Background Music by HitsLab,
+    Link: https://pixabay.com/music/comedy-comedy-funny-cartoon-background-music-316870/\r\n\r\nFunny
+    Cartoon Comedy Background Music by Hitslab, Link: https://pixabay.com/music/main-title-funny-cartoon-comedy-background-music-306997/\r\n\r\n\r\nSFX\r\n\r\nbutton
+    by Leszek_Szary, Link: https://freesound.org/people/Leszek_Szary/sounds/146718/\r\n\r\nRunning.03.wav
+    by stintx, Link: https://freesound.org/people/stintx/sounds/107625/\r\n \r\nSFX_WooshShortDash6
+    by _kx.kah, Link: https://freesound.org/people/_kx.kah/sounds/760000/\r\n \r\n\"The
+    sounds of gunshots in the wild west\" Sound effect (HD) by Saidaxyor, Link: https://youtu.be/AhGMwctYpR0?si=pkcOk-s-fyUXrwuW\r\n\r\nCartoon
+    Gun SFX by \r\nMyles Moss, Link: https://youtu.be/qO4rNSyUoTI?si=T7tHrCjc37WLhi-R\r\n
+    \r\nStrong Man Hurt Noises.mp3 by Volvion, Link: https://freesound.org/people/Volvion/sounds/609797/\r\n\r\nChicken
+    by D4XX, Link: https://freesound.org/people/D4XX/sounds/607245/\r\n \r\n20110503_clucking.01.wav
+    by dobroide, Link: https://freesound.org/people/dobroide/sounds/120583/ \r\n\r\n2.2-gallina.wav
+    by Danielajq, Link: https://freesound.org/people/Danielajq/sounds/441591/\r\n
+    \r\nYume Nikki Effect Equip by plasterbrain, Link: https://freesound.org/people/plasterbrain/sounds/464902/\r\n\r\nPowerup04.wav
+    by jeremysykes, Link: https://freesound.org/people/jeremysykes/sounds/341682/\r\n
+    \r\nCannon4.wav by Isaac200000, Link: https://freesound.org/people/Isaac200000/sounds/184647/\r\n
+    \r\nHowitzer Artillery Gun Shot Sound Effect 01 by qubodup, Link: https://freesound.org/people/qubodup/sounds/161343/\r\n\r\n\r\nParticles\r\n\r\nCartoon
+    FX Remaster Free by Jean Moreno, Link: https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-remaster-free-109565
+    \r\n\r\n\n\n\r\nSPECIAL THANKS TO:\r\n\r\n\r\nOur dear friends and family\r\n\r\n\nGeneration
+    Colombia\r\n\r\n\r\n\n\n\"Toy Cansao Gfe\" - El viejo Julius\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1273,10 +1295,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.05
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 32
   m_fontStyle: 1
@@ -5017,10 +5039,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1554109207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -11, y: 0}
-  m_SizeDelta: {x: 120, y: 0}
+  m_AnchorMin: {x: 0, y: 0.9163531}
+  m_AnchorMax: {x: 1, y: 0.999723}
+  m_AnchoredPosition: {x: -9.438, y: -18.994}
+  m_SizeDelta: {x: 106.068, y: 37.987}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1111732184
 MonoBehaviour:
@@ -5093,8 +5115,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2000}
+  m_AnchoredPosition: {x: 0, y: 1.3292539}
+  m_SizeDelta: {x: 0, y: 4797.893}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1137100192
 GameObject:
@@ -5925,8 +5947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -40, y: 100}
+  m_AnchoredPosition: {x: 0, y: 14.809998}
+  m_SizeDelta: {x: -40, y: 5.979995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1650640379
 GameObject:
@@ -8819,6 +8841,78 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.data[7].name
+      value: Turret Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.data[8].name
+      value: Enemy Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.data[9].name
+      value: Button Pressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.data[0].clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: sfxSounds.Array.data[7].clips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 76f3342c7cdaf5e43b7ec31f360502f8, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c4bd694f16f51a4f98e9978149c7a48, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 448700ba7e0452e49b7230af85b9a678, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c6c810cabc1d6324fac8392b8713a014, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b5882e86389b81644b95cbe32d870026, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: aa76195250e19884c93cd91d0d7f0e57, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[0].clips.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: aa76195250e19884c93cd91d0d7f0e57, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[6].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b5540436671bd448a05d7bee0f05da7, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[7].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c1c291524d151104992bb6bae2b600ef, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[7].clips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: dbeae93bab303fb4aab8bc5ad8ee8aa6, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[8].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ddb68e86453913849802ede1b552c1ee, type: 3}
+    - target: {fileID: 2403030401732969339, guid: 45b4dc8ee3a3dcd4c934ce1b05bfb76f, type: 3}
+      propertyPath: 'sfxSounds.Array.data[9].clips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7cc75620feefe894588b067a496712cd, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
