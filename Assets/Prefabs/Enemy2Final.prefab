@@ -992,6 +992,8 @@ MonoBehaviour:
   coinDropForce: 3
   textDamage: {fileID: 4463776484946446894, guid: 9d182e5a9cdb26a49920b0bf4a71643e, type: 3}
   attackDamage: 20
+  attackParticle: {fileID: 6263782476919498311, guid: 1fd2749f2a4056446881dce86ed70c39, type: 3}
+  instantiateAttackParticle: {fileID: 0}
 --- !u!195 &2523823066353027950
 NavMeshAgent:
   m_ObjectHideFlags: 0

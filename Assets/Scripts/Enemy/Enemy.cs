@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent enemyNavMeshAgent;
     private Transform playerTransform;
     private Animator enemyAnimator;
+    public ParticleSystem attackParticle;
+    public ParticleSystem instantiateAttackParticle;
     //private Collider attackCollider;
 
     void Start()
@@ -105,6 +108,8 @@ public class Enemy : MonoBehaviour
             if(playerControllerHealth != null)
             {
                 playerControllerHealth.TakeDamage(attackDamage);
+                instantiateAttackParticle = Instantiate(attackParticle,transform.position + Vector3.up, Quaternion.identity);
+                attackParticle.Play();
             }
         }
     }
@@ -115,6 +120,7 @@ public class Enemy : MonoBehaviour
         {
             PlayerController playerControllerHealth = other.gameObject.GetComponentInParent<PlayerController>();
             playerControllerHealth.playerAnimator.SetBool("gotHit", false);
+            Destroy(instantiateAttackParticle.gameObject);
         }
     }
 

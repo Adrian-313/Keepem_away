@@ -9,12 +9,15 @@ public class TripleShotPowerup : MonoBehaviour
     [SerializeField] private float powerupDuration = 10f;
     [SerializeField] private float respawnTime = 10f;
     [SerializeField] private int cost = 1;
-    [SerializeField] private ParticleSystem collectEffect;
     [SerializeField] private GameObject notEnoughTextPrefab;
+    [SerializeField] private ParticleSystem collectEffect;
+    [SerializeField] private ParticleSystem idleEffectInstance;    
 
     [Header("UI del Power-up")]
     [SerializeField] private Image powerupBar; // Barra de duración
     [SerializeField] private TextMeshProUGUI powerupText; // Texto de duración
+    public GameObject textCost;
+    private GameObject instantiateTextCost;
 
     private Renderer powerupRenderer;
     private Collider powerupCollider;
@@ -26,6 +29,22 @@ public class TripleShotPowerup : MonoBehaviour
 
         if (powerupBar != null) powerupBar.gameObject.SetActive(false);
         if (powerupText != null) powerupText.gameObject.SetActive(false);
+
+        if(textCost != null)
+        {
+            instantiateTextCost = Instantiate(textCost, transform.position, Quaternion.identity);
+        }
+        
+    // Mostrar efecto si el objeto está disponible
+        if (collectEffect != null)
+        {
+            idleEffectInstance = Instantiate(collectEffect, transform.position, Quaternion.identity, transform);
+            idleEffectInstance.Play();
+        }
+    }
+
+    void Update(){
+        transform.Rotate(Vector3.up, 60f * Time.deltaTime, Space.Self);
     }
 
     void OnTriggerEnter(Collider other)
@@ -46,12 +65,16 @@ public class TripleShotPowerup : MonoBehaviour
 
     IEnumerator PowerupSequence()
     {
-        // Instanciar efecto de recolección
-        Instantiate(collectEffect, transform.position, Quaternion.identity);
-
         // Ocultar power-up
         powerupRenderer.enabled = false;
         powerupCollider.enabled = false;
+
+        if (powerupRenderer.enabled == false)
+        {
+            idleEffectInstance.Stop();
+            Destroy(idleEffectInstance.gameObject);
+            Destroy(instantiateTextCost.gameObject);
+        }
 
         // Activar UI
         if (powerupBar != null) powerupBar.gameObject.SetActive(true);
@@ -92,6 +115,15 @@ public class TripleShotPowerup : MonoBehaviour
         // Reaparecer power-up
         powerupRenderer.enabled = true;
         powerupCollider.enabled = true;
+
+        // Volver a activar el efecto cuando reaparece
+        if(powerupRenderer.enabled == true)
+        {
+            idleEffectInstance = Instantiate(collectEffect, transform.position, Quaternion.identity, transform);
+            idleEffectInstance.Play();
+            instantiateTextCost = Instantiate(textCost, transform.position , Quaternion.identity);
+        }
+        
     }
 
     void SetAlpha(float alpha)
@@ -117,7 +149,7 @@ public class TripleShotPowerup : MonoBehaviour
     {
         if (notEnoughTextPrefab != null)
         {
-            GameObject text = Instantiate(notEnoughTextPrefab, transform.position, Quaternion.identity);
+            GameObject text = Instantiate(notEnoughTextPrefab, transform.position + Vector3.up , Quaternion.identity);
             Destroy(text, 2f);
         }
     }
