@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <div align="center">
   <a href="https://parapio.itch.io/keepem-away">
-    <img src="assets/img/logo.svg" alt="Logo" width="280">
+    <img src="Keepem_away.png" alt="Logo" width="550">
   </a>
 
   <h3 align="center">KEEP'EM AWAY | SHOOTER VIDEO GAME</h3>
